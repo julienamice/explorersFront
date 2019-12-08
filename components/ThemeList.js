@@ -5,14 +5,21 @@ import { Feather } from "@expo/vector-icons";
 import Header from "./Header";
 import TrailCard from "./TrailCard";
 
-const trailList = [
-  { id: 1, location: "localisation1", parcours: "parcours1", rating: 5 },
-  { id: 2, location: "localisation2", parcours: "parcours2", rating: 3 },
-  { id: 3, location: "localisation3", parcours: "parcours3", rating: 2 }
-];
-
 class ThemeList extends Component {
+  state = {
+    trailList: []
+  };
+
+  componentDidMount() {
+    console.log("WTF !");
+    fetch("http://192.168.1.12:3001/trails")
+      .then(res => res.json())
+      .then(data => this.setState({ trailList: data }));
+  }
+
   render() {
+    const { trailList } = this.state;
+
     return (
       <ImageBackground
         source={require("../assets/splash.png")}
