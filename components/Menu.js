@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
-import { Button } from "react-native-elements";
-import Compte from "./Compte";
+import { View } from "react-native";
+import { withNavigation } from "react-navigation";
+import { Button, Icon } from "react-native-elements";
+// import Header from "./Header";
+import HeaderMenu from "./HeaderMenu";
 
 class Menu extends Component {
   state = {
@@ -9,25 +11,31 @@ class Menu extends Component {
   };
 
   onPress = () => {
-    this.setState({ displayCompte: !this.state.displayCompte });
+    // this.setState({ displayCompte: !this.state.displayCompte });
+    this.props.navigation.navigate("Compte");
   };
 
   render() {
+    // const { goBack } = this.props.navigation;
     return (
       <View
         style={{
-          width: 350,
-          height: 650,
+          width: "100%",
+          height: "100%",
           position: "absolute",
-          right: 5,
-          marginTop: 70,
+          // right: "1.5%",
+
+          // marginTop: "7.5%",
           // marginLeft: 200,
           borderWidth: 1,
           // borderColor: "#DDDDDD",
           borderRadius: 5,
-          backgroundColor: "grey"
+          backgroundColor: "grey",
+          // zIndex: 50,
+          elevation: 50
         }}
       >
+        <HeaderMenu />
         {/* <Text>Toto</Text> */}
         <Button
           title="Mon Compte"
@@ -47,10 +55,24 @@ class Menu extends Component {
             this.onPress();
           }}
         />
-        {this.state.displayCompte && <Menu /> && <Compte />}
+        {/* <Button
+          icon={<Icon name="arrow-back" color="black" />}
+          buttonStyle={{
+            backgroundColor: "transparent",
+            position: "absolute",
+            top: 4,
+            left: 15,
+            zIndex: 4,
+            borderColor: "transparent",
+            borderRadius: 5
+          }}
+          // onPress=
+          onPress()
+        /> */}
+        {/* {this.state.displayCompte && <Menu /> && <Compte />} */}
       </View>
     );
   }
 }
 
-export default Menu;
+export default withNavigation(Menu);

@@ -9,9 +9,13 @@ const getRating = score => {
 
   for (let i = 1; i <= 5; i++) {
     if (i <= score) {
-      rating.push(<FontAwesome key={i} name="star" size={15} />);
+      rating.push(
+        <FontAwesome key={i} name="star" size={15} color="#C1EA69" />
+      );
     } else {
-      rating.push(<FontAwesome key={i} name="star-o" size={15} />);
+      rating.push(
+        <FontAwesome key={i} name="star" size={15} color="#D9C6BA" />
+      );
     }
   }
 
@@ -19,13 +23,9 @@ const getRating = score => {
 };
 
 class TrailCard extends Component {
-  static navigationOptions = {
-    // title: "Welcome"
-  };
   render() {
     const { navigate } = this.props.navigation;
     return (
-      // const TrailCard = props => (
       <TouchableOpacity
         onPress={() => navigate("TrailDetails", { id: this.props.id })}
       >
@@ -34,13 +34,19 @@ class TrailCard extends Component {
             borderWidth: 1,
             borderColor: "#DDDDDD",
             borderRadius: 8,
-            marginBottom: 10,
+            marginBottom: 20,
             marginRight: 5,
-            backgroundColor: "white"
+            backgroundColor: "white",
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+
+            elevation: 5
           }}
-          // onPress={() => {
-          //   console.log("héhé");
-          // }}
         >
           <Image
             source={require("../assets/aventure.png")}
@@ -54,6 +60,7 @@ class TrailCard extends Component {
             <Foundation
               name="marker"
               size={15}
+              color="#C1EA69"
               iconStyle={{ marginRight: 15 }}
             />
             <Text> </Text>
@@ -74,13 +81,15 @@ class TrailCard extends Component {
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
-              marginBottom: 5,
+              marginBottom: 15,
               marginRight: 10,
               marginLeft: 10
             }}
           >
-            <Text>Score</Text>
-            <Text>{getRating(this.props.rating)}</Text>
+            <Text h4>{this.props.subtitle}</Text>
+            <Text style={{ marginTop: 10 }}>
+              {getRating(this.props.rating)}
+            </Text>
           </View>
         </View>
       </TouchableOpacity>

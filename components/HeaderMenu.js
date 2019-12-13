@@ -1,20 +1,21 @@
 import React, { Component } from "react";
-import { Button } from "react-native-elements";
+import { Button, Icon } from "react-native-elements";
 import { View, Image } from "react-native";
 import { withNavigation } from "react-navigation";
 
-class Header extends Component {
-  // state = {
-  //   displayMenu: false
-  // };
+class HeaderMenu extends Component {
+  //   state = {
+  //     displayMenu: false
+  //   };
 
   onPress = () => {
-    // this.setState({ displayMenu: !this.state.displayMenu });
-    this.props.navigation.navigate("Compte");
+    //   this.setState({ displayMenu: !this.state.displayMenu });
+    console.log("dans mon header menu");
   };
 
   render() {
     // const { navigate } = this.props.navigation;
+    const { goBack } = this.props.navigation;
     return (
       <View
         style={{
@@ -35,7 +36,7 @@ class Header extends Component {
           }}
           color="black"
         />
-        <Button
+        {/* <Button
           icon={
             <Image
               source={require("../assets/menu.png")}
@@ -49,14 +50,31 @@ class Header extends Component {
             top: 30,
             right: 10
           }}
-          onPress={() => {
-            this.onPress();
+          onPress={() => goBack()}
+          //   onPress={() => {
+          //     this.onPress();
+          //   }}
+        /> */}
+        <Button
+          icon={<Icon name="arrow-back" color="black" />}
+          buttonStyle={{
+            backgroundColor: "transparent",
+            position: "absolute",
+            top: 30,
+            right: 10,
+            zIndex: 4,
+            borderColor: "transparent",
+            borderRadius: 5
           }}
+          // onPress=
+          onPress={() => goBack()}
+          title="Go Back Home"
+          titleStyle={{ color: "black" }}
         />
-        {/* {this.state.displayMenu && <Menu/>} */}
+        {/* {this.state.displayMenu && navigate("Menu")} */}
       </View>
     );
   }
 }
 
-export default withNavigation(Header);
+export default withNavigation(HeaderMenu);
