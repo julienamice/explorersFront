@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { View, Image, ScrollView } from "react-native";
 import { Button, Text, Icon } from "react-native-elements";
-import { Foundation, FontAwesome } from "@expo/vector-icons";
+import { Foundation } from "@expo/vector-icons";
+import Mapps from "./Mapps";
 
 class TrailDetails extends Component {
   state = {
@@ -58,7 +59,7 @@ class TrailDetails extends Component {
               borderRadius: 5
             }}
             // onPress=
-            onPress={() => navigate("Home")}
+            onPress={() => navigate("ThemeList")}
           />
           {/* récupérer l'id pour faire un test dessus pour savoir de quelle case du tab trailList il faut afficher les infos */}
           {/* <Text>parcours : {navigation.state.params.id}</Text> */}
@@ -110,10 +111,10 @@ class TrailDetails extends Component {
             {this.state.displayTeacher && (
               <Text h4>{this.state.trailDetails.details}</Text>
             )}
+            {/* <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
             <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
             <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
-            <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
-            <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
+            <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text> */}
           </View>
 
           <View
@@ -139,14 +140,15 @@ class TrailDetails extends Component {
               elevation: 5
             }}
           >
-            <Image
+            <Mapps />
+            {/* <Image
               source={require("../assets/Map2.png")}
               style={{
                 borderTopLeftRadius: 5,
                 borderTopRightRadius: 5,
                 width: "100%"
               }}
-            />
+            /> */}
             {/* gestion du picto et départ */}
             <View
               style={{

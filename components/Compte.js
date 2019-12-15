@@ -3,10 +3,12 @@ import { View, Text, Image, ScrollView } from "react-native";
 import { Button } from "react-native-elements";
 import { withNavigation } from "react-navigation";
 import { Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
+import Parameters from "./Parameters";
 
 class Compte extends Component {
   state = {
-    userInfos: {}
+    userInfos: {},
+    param: false
   };
 
   componentDidMount() {
@@ -23,7 +25,11 @@ class Compte extends Component {
   }
 
   onPress = () => {
-    this.props.navigation.navigate("Home");
+    this.props.navigation.navigate("ThemeList");
+  };
+
+  onPressParams = () => {
+    this.setState({ param: !this.state.param });
   };
 
   render() {
@@ -31,16 +37,25 @@ class Compte extends Component {
       // gestion de la view globale
       <View
         style={{
-          width: "100%",
-          height: "100%",
+          width: "98%",
+          height: "94.5%",
           position: "absolute",
           // right: 5,
-          marginTop: 26,
-          // marginLeft: 200,
-          borderWidth: 1,
-          // borderColor: "#DDDDDD",
-          borderRadius: 5,
-          backgroundColor: "white"
+          marginTop: "9%",
+          marginLeft: "1%",
+          borderWidth: 2,
+          borderTopColor: "#D7D7D6",
+          borderColor: "transparent",
+          borderRadius: 15,
+          backgroundColor: "white",
+          shadowColor: "black",
+          shadowOffset: {
+            width: 0,
+            height: -10
+          },
+          shadowRadius: 50,
+          shadowOpacity: 1.0,
+          elevation: 15
         }}
       >
         {/* <Text>Toto</Text> */}
@@ -97,16 +112,17 @@ class Compte extends Component {
             Mes anciens parcours :
           </Text>
           <ScrollView
-            style={{ height: "20%" }}
-            contentContainerStyle={{ width: "200%" }}
+            style={{ height: 100 }}
+            contentContainerStyle={{ width: "150%" }}
             horizontal={true}
             nestedScrollEnabled={true}
             showsHorizontalScrollIndicator={false}
+            alwaysBounceHorizontal={true}
           >
             <View
               style={{
-                width: "30%",
-                height: "60%",
+                width: "40%",
+                height: 84,
                 marginLeft: "5%",
                 borderRadius: 5,
                 marginTop: "2%",
@@ -140,8 +156,8 @@ class Compte extends Component {
             </View>
             <View
               style={{
-                width: "30%",
-                height: "60%",
+                width: "45%",
+                height: 84,
                 marginLeft: "5%",
                 borderRadius: 5,
                 marginTop: "2%",
@@ -154,7 +170,7 @@ class Compte extends Component {
                 23 questions
               </Text>
               <Text
-                style={{ marginLeft: "5%", fontWeight: "bold", fontSize: 18 }}
+                style={{ marginLeft: "5%", fontWeight: "bold", fontSize: 16 }}
               >
                 La Révolution Industrielle
               </Text>
@@ -163,7 +179,7 @@ class Compte extends Component {
                 buttonStyle={{
                   backgroundColor: "transparent",
                   position: "absolute",
-                  bottom: 4,
+                  bottom: 0,
                   right: "3%",
                   borderColor: "transparent",
                   borderRadius: 5
@@ -174,7 +190,7 @@ class Compte extends Component {
               />
             </View>
           </ScrollView>
-
+          {this.state.param && <Parameters />}
           {/* </View> */}
           {/* <UserCard /> */}
           <Button
@@ -185,13 +201,14 @@ class Compte extends Component {
             buttonStyle={{
               backgroundColor: "transparent",
               position: "absolute",
-              left: "3%",
-              paddingTop: "-20%",
-              marginTop: "-4%",
+              left: "10%",
+              // paddingTop: "-20%",
+              marginTop: "4%",
               borderColor: "transparent"
             }}
             onPress={() => {
-              console.log("En cours de construction");
+              // console.log("En cours de construction");
+              this.onPressParams();
             }}
           />
           <Button
@@ -202,13 +219,14 @@ class Compte extends Component {
             buttonStyle={{
               backgroundColor: "transparent",
               position: "absolute",
-              right: "14%",
-              paddingTop: "-20%",
-              marginTop: "-4%",
+              right: "8%",
+              // paddingTop: "-20%",
+              marginTop: "4%",
               borderColor: "transparent"
             }}
             onPress={() => {
-              console.log("En cours de construction");
+              // console.log("En cours de construction");
+              this.onPress();
             }}
           />
         </View>

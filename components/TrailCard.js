@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Image, Button, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Text } from "react-native-elements";
 import { Foundation, FontAwesome } from "@expo/vector-icons";

@@ -4,10 +4,16 @@ import TrailDetails from "./components/TrailDetails";
 import ThemeList from "./components/ThemeList";
 import Compte from "./components/Compte";
 import Mapps from "./components/Mapps";
-import Menu from "./components/Menu";
+import Sign from "./components/Sign";
 
 const MainNavigator = createStackNavigator({
   Home: {
+    screen: Sign,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  ThemeList: {
     screen: ThemeList,
     navigationOptions: () => ({
       header: null
@@ -15,12 +21,6 @@ const MainNavigator = createStackNavigator({
   },
   TrailDetails: {
     screen: TrailDetails,
-    navigationOptions: () => ({
-      header: null
-    })
-  },
-  Menu: {
-    screen: Menu,
     navigationOptions: () => ({
       header: null
     })

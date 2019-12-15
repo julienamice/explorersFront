@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { ImageBackground, View, ScrollView, Image } from "react-native";
-import { Card, Button, Icon, Text } from "react-native-elements";
+import { ImageBackground, View, ScrollView } from "react-native";
+import { Button, Text } from "react-native-elements";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import Header from "./Header";
 import TrailCard from "./TrailCard";
-import Mapps from "./Mapps";
 
 class ThemeList extends Component {
   state = {

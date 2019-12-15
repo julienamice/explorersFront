@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import MapView, { Polygon, Marker } from "react-native-maps";
+import { Button, Icon } from "react-native-elements";
 
 class Mapps extends Component {
   state = {
@@ -12,25 +13,42 @@ class Mapps extends Component {
   };
 
   render() {
+    // const { navigate } = this.props.navigation;
     return (
       <View
         style={{
           width: "90%",
-          height: "100%",
+          height: "80%",
           backgroundColor: "white",
           borderRadius: 2,
-          marginTop: 50,
+          //   marginTop: 50,
           marginLeft: "5%"
         }}
       >
-        <Text>Toto</Text>
+        {/* <Text>Toto</Text> */}
+        <Button
+          icon={<Icon name="arrow-back" color="black" />}
+          buttonStyle={{
+            backgroundColor: "transparent",
+            position: "absolute",
+            top: 4,
+            left: 15,
+            zIndex: 4,
+            borderColor: "transparent",
+            borderRadius: 5
+          }}
+          // onPress=
+          onPress={() => this.props.navigation.navigate("Home")}
+        />
         <MapView
           style={{ width: "100%", height: "100%", flex: 1 }}
           zoomEnabled={true}
           showsUserLocation={true}
           initialRegion={{
-            latitude: 48.866667,
-            longitude: 2.333333,
+            // latitude: 48.866667,
+            // longitude: 2.333333,
+            latitude: 48.864824,
+            longitude: 2.334595,
             latitudeDelta: 0.1,
             longitudeDelta: 0.1
           }}
