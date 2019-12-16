@@ -1,20 +1,20 @@
 import React, { Component } from "react";
-import { Icon, Button } from "react-native-elements";
+import { Button } from "react-native-elements";
 import { View, Image } from "react-native";
-// import { Feather } from "@expo/vector-icons";
-import Menu from "./Menu";
+import { withNavigation } from "react-navigation";
 
-// const Header = () => (
 class Header extends Component {
-  state = {
-    displayMenu: false
-  };
+  // state = {
+  //   displayMenu: false
+  // };
 
   onPress = () => {
-    this.setState({ displayMenu: !this.state.displayMenu });
+    // this.setState({ displayMenu: !this.state.displayMenu });
+    this.props.navigation.navigate("Compte");
   };
 
   render() {
+    // const { navigate } = this.props.navigation;
     return (
       <View
         style={{
@@ -24,40 +24,39 @@ class Header extends Component {
           borderRadius: 2
         }}
       >
+        <Image
+          source={require("../assets/logo.png")}
+          style={{
+            width: 45,
+            height: 45,
+            position: "absolute",
+            top: 32,
+            left: 10
+          }}
+          color="black"
+        />
         <Button
           icon={
             <Image
-              source={require("../assets/logo.png")}
-              style={{ width: 45, height: 45 }}
+              source={require("../assets/menu.png")}
+              style={{ width: 25, height: 25, marginTop: 3 }}
               color="black"
             />
           }
           buttonStyle={{
             backgroundColor: "transparent",
             position: "absolute",
-            top: 22,
-            left: 25
-          }}
-          // onPress={() => { //du coup pas besoin de btn ici au final car pas de redirection
-          //   console.log("home");
-          // }}
-        />
-        <Button
-          icon={<Icon name="menu" color="black" />}
-          buttonStyle={{
-            backgroundColor: "transparent",
-            position: "absolute",
             top: 30,
-            right: 25
+            right: 10
           }}
           onPress={() => {
             this.onPress();
           }}
         />
-        {this.state.displayMenu && <Menu />}
+        {/* {this.state.displayMenu && <Menu/>} */}
       </View>
     );
   }
 }
 
-export default Header;
+export default withNavigation(Header);
