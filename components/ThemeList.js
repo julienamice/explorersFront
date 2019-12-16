@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ImageBackground, View, ScrollView } from "react-native";
+import { ImageBackground, View, ScrollView, AsyncStorage } from "react-native";
 import { Button, Text } from "react-native-elements";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import Header from "./Header";
@@ -11,8 +11,16 @@ class ThemeList extends Component {
   };
 
   componentDidMount() {
+    AsyncStorage.getItem("user", (err, data) => {
+      var userJSON = JSON.parse(data);
+      console.log("user en JSON", userJSON);
+      if (userJSON) {
+        console.log("userJSON existe !");
+      }
+    });
+
     // console.log("juste avant le fetch");
-    fetch("http://192.168.1.21:3001/trails") // fetch sur la route / de trails //192.168.1.12 || 10.2.4.18
+    fetch("http://10.2.4.18:3001/trails") // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailList: data })); // avec ces données modifie le state de trailList
   }

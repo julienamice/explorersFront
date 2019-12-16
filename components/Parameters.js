@@ -32,6 +32,10 @@ class Parameters extends Component {
     });
   };
 
+  delete = () => {
+    console.log("en cours");
+  };
+
   render() {
     return (
       <View
@@ -180,7 +184,7 @@ class Parameters extends Component {
               marginLeft: 5,
               marginBottom: 5
             }}
-            onPress={() => console.log("Suppression du compte")}
+            onPress={this.delete}
           />
           <Button
             title="Enregistrer"

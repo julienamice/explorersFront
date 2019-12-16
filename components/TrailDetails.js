@@ -16,7 +16,7 @@ class TrailDetails extends Component {
 
   componentDidMount() {
     fetch(
-      `http://192.168.1.21:3001/trails/${this.props.navigation.state.params.id}`
+      `http://10.2.4.18:3001/trails/${this.props.navigation.state.params.id}`
     ) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailDetails: data })); // avec ces données modifie le state de trailList

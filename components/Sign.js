@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Image, TouchableOpacity, TextInput } from "react-native";
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  AsyncStorage
+} from "react-native";
 import { withNavigation } from "react-navigation";
 import { Text, Button } from "react-native-elements";
 import SwitchToggle from "react-native-switch-toggle";
@@ -13,28 +19,37 @@ class Sign extends Component {
       password: "",
       isTeacher: false
     },
-    connexionMode: true
+    connexionMode: false
   };
 
   onPressInsc = () => {
+    var signupData = JSON.stringify({
+      firstName: this.state.userInfos.firstName,
+      email: this.state.userInfos.email,
+      password: this.state.userInfos.password,
+      isTeacher: this.state.userInfos.isTeacher
+    });
+
     fetch(
-      `http://192.168.1.21:3001/users/${
+      `http://10.2.4.18:3001/users/${
         this.state.connexionMode ? "signin" : "signup"
       }`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: this.state.userInfos
+        body: signupData
       }
     )
       .then(response => {
         return response.json();
       })
-      .then(data => {
-        // Load data in local storage and navigate to home page
+      // Load data in local storage and navigate to home page // comme on renvoie user tout court c'est pas data.user mais data
+      .then(async data => {
+        await AsyncStorage.setItem("user", JSON.stringify(data));
+        this.props.navigation.navigate("ThemeList");
       })
       .catch(error => {
-        console.error("Request failed in my Sign-Up Home request", error);
+        console.error("Request failed in my Signin Home request", error);
       });
     console.log(this.state.userInfos);
   };
@@ -52,170 +67,173 @@ class Sign extends Component {
   setPassword = value =>
     this.setState({ userInfos: { ...this.state.userInfos, password: value } });
 
-  setIsTeacher = value =>
-    this.setState({ userInfos: { ...this.state.userInfos, isTeacher: value } });
+  toggleIsTeacher = () =>
+    this.setState({
+      userInfos: {
+        ...this.state.userInfos,
+        isTeacher: !this.state.userInfos.isTeacher
+      }
+    });
 
   render() {
     const { navigate } = this.props.navigation;
     const { connexionMode } = this.state;
     return (
-      <TouchableOpacity onPress={() => navigate("ThemeList")}>
+      // gestion de l'affichage global
+      <View
+        style={{
+          width: "90%",
+          height: 500,
+          marginTop: "15%",
+          marginLeft: "5%",
+          borderWidth: 1,
+          borderColor: "#DDDDDD",
+          borderRadius: 8,
+          marginBottom: 20,
+          marginRight: 5,
+          backgroundColor: "white",
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+
+          elevation: 5
+        }}
+      >
+        <Image
+          source={require("../assets/logo.png")}
+          style={{
+            width: 70,
+            height: 70,
+            position: "absolute",
+            top: "6%",
+            left: "39%"
+          }}
+          color="black"
+        />
+        {/* gestion de l'encart des btn connexion et inscription */}
         <View
           style={{
             width: "90%",
-            height: 500,
-            marginTop: "15%",
-            marginLeft: "5%",
-            borderWidth: 1,
-            borderColor: "#DDDDDD",
-            borderRadius: 8,
-            marginBottom: 20,
-            marginRight: 5,
-            backgroundColor: "white",
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-
-            elevation: 5
+            height: "10%",
+            flexDirection: "row",
+            marginTop: 100,
+            marginLeft: 15
           }}
         >
-          <Image
-            source={require("../assets/logo.png")}
-            style={{
-              width: 70,
-              height: 70,
-              position: "absolute",
-              top: "6%",
-              left: "39%"
-            }}
-            color="black"
-          />
-          <View
-            style={{
-              width: "90%",
-              height: "10%",
-              flexDirection: "row",
-              marginTop: 100,
-              marginLeft: 15
-            }}
-          >
-            {connexionMode ? (
-              <Button
-                title="Connexion"
-                titleStyle={{ color: "black", marginLeft: 5 }}
-                buttonStyle={{
-                  backgroundColor: "transparent",
-                  position: "absolute",
-                  left: 20,
-                  top: 3,
-                  marginTop: "4%",
-                  borderColor: "transparent",
-                  flexDirection: "column-reverse"
-                }}
-                icon={<FontAwesome name="circle" size={10} color="#C1EA69" />}
-                onPress={this.onPressConnex}
-              />
-            ) : (
-              <Button
-                title="Connexion"
-                titleStyle={{ color: "black", marginLeft: 5 }}
-                buttonStyle={{
-                  backgroundColor: "transparent",
-                  position: "absolute",
-                  left: 20,
-                  top: 3,
-                  marginTop: "4%",
-                  borderColor: "transparent",
-                  flexDirection: "column-reverse"
-                }}
-                icon={
-                  <FontAwesome name="circle" size={10} color="transparent" />
-                }
-                onPress={this.onPressConnex}
-              />
-            )}
-            {connexionMode ? (
-              <Button
-                title="Inscription"
-                titleStyle={{ color: "black", marginLeft: 5 }}
-                buttonStyle={{
-                  backgroundColor: "transparent",
-                  position: "absolute",
-                  left: 150,
-                  top: 3,
-                  marginTop: "4%",
-                  borderColor: "transparent",
-                  flexDirection: "column-reverse"
-                }}
-                icon={
-                  <FontAwesome name="circle" size={10} color="transparent" />
-                }
-                onPress={this.onPressInscription}
-              />
-            ) : (
-              <Button
-                title="Inscription"
-                titleStyle={{ color: "black", marginLeft: 5 }}
-                buttonStyle={{
-                  backgroundColor: "transparent",
-                  position: "absolute",
-                  left: 150,
-                  top: 3,
-                  marginTop: "4%",
-                  borderColor: "transparent",
-                  flexDirection: "column-reverse"
-                }}
-                icon={<FontAwesome name="circle" size={10} color="#C1EA69" />}
-                onPress={this.onPressInscription}
-              />
-            )}
-          </View>
           {connexionMode ? (
-            <Connexion
-              firstName={this.state.userInfos.firstName}
-              setFirstName={this.setFirstName}
-              password={this.state.userInfos.password}
-              setPassword={this.setPassword}
+            <Button
+              title="Connexion"
+              titleStyle={{ color: "black", marginLeft: 5 }}
+              buttonStyle={{
+                backgroundColor: "transparent",
+                position: "absolute",
+                left: 20,
+                top: 3,
+                marginTop: "4%",
+                borderColor: "transparent",
+                flexDirection: "column-reverse"
+              }}
+              icon={<FontAwesome name="circle" size={10} color="#C1EA69" />}
+              onPress={this.onPressConnex}
             />
           ) : (
-            <Inscription
-              firstName={this.state.userInfos.firstName}
-              setFirstName={this.setFirstName}
-              email={this.state.userInfos.email}
-              setEmail={this.setEmail}
-              password={this.state.userInfos.password}
-              setPassword={this.setPassword}
-              isTeacher={this.state.userInfos.isTeacher}
-              setIsTeacher={this.setIsTeacher}
+            <Button
+              title="Connexion"
+              titleStyle={{ color: "black", marginLeft: 5 }}
+              buttonStyle={{
+                backgroundColor: "transparent",
+                position: "absolute",
+                left: 20,
+                top: 3,
+                marginTop: "4%",
+                borderColor: "transparent",
+                flexDirection: "column-reverse"
+              }}
+              icon={<FontAwesome name="circle" size={10} color="transparent" />}
+              onPress={this.onPressConnex}
             />
           )}
-          <Button
-            title="Connexion"
-            titleStyle={{
-              color: "black",
-              fontSize: 14
-            }}
-            buttonStyle={{
-              backgroundColor: "#C1EA69",
-              position: "absolute",
-              marginLeft: "9%",
-              marginBottom: -18,
-              width: "80%",
-              height: 38,
-              position: "absolute",
-              bottom: 0
-            }}
-            onPress={() => {
-              this.onPressInsc();
-              //   console.log("en construction");
-            }}
-          />
+          {connexionMode ? (
+            <Button
+              title="Inscription"
+              titleStyle={{ color: "black", marginLeft: 5 }}
+              buttonStyle={{
+                backgroundColor: "transparent",
+                position: "absolute",
+                left: 150,
+                top: 3,
+                marginTop: "4%",
+                borderColor: "transparent",
+                flexDirection: "column-reverse"
+              }}
+              icon={<FontAwesome name="circle" size={10} color="transparent" />}
+              onPress={this.onPressInscription}
+            />
+          ) : (
+            <Button
+              title="Inscription"
+              titleStyle={{ color: "black", marginLeft: 5 }}
+              buttonStyle={{
+                backgroundColor: "transparent",
+                position: "absolute",
+                left: 150,
+                top: 3,
+                marginTop: "4%",
+                borderColor: "transparent",
+                flexDirection: "column-reverse"
+              }}
+              icon={<FontAwesome name="circle" size={10} color="#C1EA69" />}
+              onPress={this.onPressInscription}
+            />
+          )}
         </View>
-      </TouchableOpacity>
+        {/* en fonction de l'état de connexionMode, on passe certaines infos en props respectivements à connexion et a inscription*/}
+        {connexionMode ? (
+          <Connexion
+            firstName={this.state.userInfos.firstName}
+            setFirstName={this.setFirstName}
+            password={this.state.userInfos.password}
+            setPassword={this.setPassword}
+          />
+        ) : (
+          <Inscription
+            firstName={this.state.userInfos.firstName}
+            setFirstName={this.setFirstName}
+            email={this.state.userInfos.email}
+            setEmail={this.setEmail}
+            password={this.state.userInfos.password}
+            setPassword={this.setPassword}
+            isTeacher={this.state.userInfos.isTeacher}
+            toggleIsTeacher={this.toggleIsTeacher}
+          />
+        )}
+        {/* btn de connexion/validation de l'inscription/connexion */}
+        <Button
+          title="Se connecter"
+          titleStyle={{
+            color: "black",
+            fontSize: 14
+          }}
+          buttonStyle={{
+            backgroundColor: "#C1EA69",
+            position: "absolute",
+            marginLeft: "9%",
+            marginBottom: -18,
+            width: "80%",
+            height: 38,
+            position: "absolute",
+            bottom: 0
+          }}
+          onPress={() => {
+            this.onPressInsc();
+            //   console.log("en construction");
+          }}
+        />
+      </View>
     );
   }
 }
@@ -234,9 +252,10 @@ class Inscription extends Component {
       password,
       setPassword,
       isTeacher,
-      setIsTeacher
+      toggleIsTeacher
     } = this.props;
     return (
+      // gestion de la vue globale
       <View
         style={{
           width: "90%",
@@ -247,6 +266,7 @@ class Inscription extends Component {
           backgroundColor: "white"
         }}
       >
+        {/* début du form d'inscription */}
         <Text style={{ position: "absolute", top: 8, left: 38 }}>
           Your FirstName
         </Text>
@@ -320,7 +340,7 @@ class Inscription extends Component {
             backgroundColor: "white"
           }}
           switchOn={isTeacher}
-          onPress={setIsTeacher}
+          onPress={toggleIsTeacher}
           circleColorOff="white"
           circleColorOn="#C1EA69"
           duration={500}
@@ -336,6 +356,7 @@ class Connexion extends Component {
   render() {
     const { firstName, setFirstName, password, setPassword } = this.props;
     return (
+      // début du form de connexion
       <View
         style={{
           width: "90%",
@@ -364,7 +385,7 @@ class Connexion extends Component {
           placeholder="John Doe"
         />
         <Text style={{ position: "absolute", top: 78, left: 38 }}>
-          Your Pass
+          Your Password
         </Text>
         <TextInput
           style={{
