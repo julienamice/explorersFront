@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native';
+
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 import MapView, { Marker } from 'react-native-maps';
 
-import Maptracking from './map.enigma'
-// import { createAppContainer } from 'react-navigation';
-// import { createStackNavigator } from 'react-navigation-stack';
 
-// const enigmaNavigator = createStackNavigator({
-//     Intro: { screen: Intro },
-//     Profile: { screen: Maptracking }
-// });
 
-// const trailNavigator = createAppContainer(enigmaNavigator);
-
-function Intro(props) {
+function IntroTrail(props) {
     const [currentPos, setCurrentPos] = useState({ long: 0, lat: 0, latitudeDelta: 0.5, longitudeDelta: 0.5 })
     const [enigmaPos, setEnigma] = useState({ long: 2.2727728, lat: 48.8250032 })
     const [distToEnigma, setDistToEngima] = useState(null)
@@ -23,6 +15,8 @@ function Intro(props) {
 
     const [enigmaContent, setEnigmaContent] = useState({})
 
+    const { navigation } = props;
+    const { navigate } = props.navigation;
     //Fonction de calcul entre point geoloc et étape de l'énigme
     function distance(lat1, lon1, lat2, lon2, unit) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -103,6 +97,16 @@ function Intro(props) {
 
     return (
         <View style={styles.container}>
+            <View style={{ position: "absolute", top: 16, width: '100%', left: '7%', alignItems: 'stretch' }}>
+                <TouchableOpacity onPress={() => { navigate("TrailDetails") }}>
+                    <Image
+                        style={{ width: 36 }}
+                        source={require('../assets/back.png')}
+                    >
+                    </Image>
+                </TouchableOpacity>
+
+            </View>
             <View top={60} style={{ width: '86%', position: 'absolute' }}>
                 <Text h1 style={styles.h1}>Introduction</Text>
                 <Text style={styles.text}>{enigmaContent.textIntro}</Text>
@@ -122,7 +126,7 @@ function Intro(props) {
                 <View ><Text>Alo</Text></View>
             </View>
 
-            <TouchableOpacity style={nextStep.isNext === true ? styles.buttonOK : styles.buttonDisabled} disabled={nextStep.isNext} onPress={() => { console.log(currentPos.lat + ' / ' + currentPos.long) }}>
+            <TouchableOpacity style={nextStep.isNext === true ? styles.buttonOK : styles.buttonDisabled} disabled={nextStep.isNext === true ? false : true} onPress={() => { navigate("Louvre1", { enigmaContent: enigmaContent }) }}>
                 <Text style={styles.textCTA}>{nextStep.isNext === true ? nextStep.msg : 'Rapprochez vous du départ !'}</Text>
             </TouchableOpacity>
 
@@ -188,4 +192,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Intro
+export default IntroTrail

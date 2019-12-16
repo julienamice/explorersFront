@@ -2,18 +2,51 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native';
 
 
-function Enigma(props) {
+function Louvre1(props) {
 
     useEffect(() => {
 
 
     }, [])
+
+    const { navigation } = props;
+    const { navigate } = props.navigation;
+
     return (
         <View style={styles.container}>
+            <View style={{ position: "absolute", top: 16, width: '100%', left: '7%', alignItems: 'stretch' }}>
+                <TouchableOpacity onPress={() => { navigate("TrailDetails") }}>
+                    <Image
+                        style={{ width: 36 }}
+                        source={require('../assets/back.png')}
+                    >
+                    </Image>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => { console.log('Donne un indice stp') }}
+                    style={
+                        {
+                            alignSelf: "flex-end",
+                            alignItems: 'center',
+
+                            right: '7%',
+                            backgroundColor: '#C1EA69',
+                            width: 60,
+                            height: 40,
+                            borderRadius: 4,
+                            borderColor: 'transparent',
+                        }}
+                >
+                    <Text style={{ lineHeight: 40 }}>Indice</Text>
+                </TouchableOpacity>
+            </View>
             <View top={60} style={{ width: '86%', position: 'absolute' }}>
                 <Text h1 style={styles.h1}>Votre première mission</Text>
-                <Text style={styles.text}></Text>
+                <Text style={styles.text}>Les consignes de la première mission</Text>
             </View>
+            <TouchableOpacity style={styles.buttonOK} onPress={() => { navigate("Louvre2", { enigmaContent: navigation.enigmaContent }) }}>
+                <Text style={styles.textCTA}>Je suis prêt !</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -41,22 +74,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderColor: 'transparent',
     },
-    card: {
-        borderRadius: 4,
-        backgroundColor: '#F2F2F2',
-        width: '86%',
-        height: 260,
-        marginBottom: 24,
-        overflow: 'hidden',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-        elevation: 3,
-    },
+
     textCTA: {
         lineHeight: 40
     },
@@ -75,4 +93,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Enigma
+export default Louvre1
