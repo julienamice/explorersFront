@@ -31,8 +31,8 @@ class Sign extends Component {
     });
 
     fetch(
-      `http://10.2.4.18:3001/users/${
-        this.state.connexionMode ? "signin" : "signup"
+      `http://192.168.1.80:3001/users/${
+      this.state.connexionMode ? "signin" : "signup"
       }`,
       {
         method: "POST",
@@ -141,22 +141,22 @@ class Sign extends Component {
               onPress={this.onPressConnex}
             />
           ) : (
-            <Button
-              title="Connexion"
-              titleStyle={{ color: "black", marginLeft: 5 }}
-              buttonStyle={{
-                backgroundColor: "transparent",
-                position: "absolute",
-                left: 20,
-                top: 3,
-                marginTop: "4%",
-                borderColor: "transparent",
-                flexDirection: "column-reverse"
-              }}
-              icon={<FontAwesome name="circle" size={10} color="transparent" />}
-              onPress={this.onPressConnex}
-            />
-          )}
+              <Button
+                title="Connexion"
+                titleStyle={{ color: "black", marginLeft: 5 }}
+                buttonStyle={{
+                  backgroundColor: "transparent",
+                  position: "absolute",
+                  left: 20,
+                  top: 3,
+                  marginTop: "4%",
+                  borderColor: "transparent",
+                  flexDirection: "column-reverse"
+                }}
+                icon={<FontAwesome name="circle" size={10} color="transparent" />}
+                onPress={this.onPressConnex}
+              />
+            )}
           {connexionMode ? (
             <Button
               title="Inscription"
@@ -174,22 +174,22 @@ class Sign extends Component {
               onPress={this.onPressInscription}
             />
           ) : (
-            <Button
-              title="Inscription"
-              titleStyle={{ color: "black", marginLeft: 5 }}
-              buttonStyle={{
-                backgroundColor: "transparent",
-                position: "absolute",
-                left: 150,
-                top: 3,
-                marginTop: "4%",
-                borderColor: "transparent",
-                flexDirection: "column-reverse"
-              }}
-              icon={<FontAwesome name="circle" size={10} color="#C1EA69" />}
-              onPress={this.onPressInscription}
-            />
-          )}
+              <Button
+                title="Inscription"
+                titleStyle={{ color: "black", marginLeft: 5 }}
+                buttonStyle={{
+                  backgroundColor: "transparent",
+                  position: "absolute",
+                  left: 150,
+                  top: 3,
+                  marginTop: "4%",
+                  borderColor: "transparent",
+                  flexDirection: "column-reverse"
+                }}
+                icon={<FontAwesome name="circle" size={10} color="#C1EA69" />}
+                onPress={this.onPressInscription}
+              />
+            )}
         </View>
         {/* en fonction de l'état de connexionMode, on passe certaines infos en props respectivements à connexion et a inscription*/}
         {connexionMode ? (
@@ -200,17 +200,17 @@ class Sign extends Component {
             setPassword={this.setPassword}
           />
         ) : (
-          <Inscription
-            firstName={this.state.userInfos.firstName}
-            setFirstName={this.setFirstName}
-            email={this.state.userInfos.email}
-            setEmail={this.setEmail}
-            password={this.state.userInfos.password}
-            setPassword={this.setPassword}
-            isTeacher={this.state.userInfos.isTeacher}
-            toggleIsTeacher={this.toggleIsTeacher}
-          />
-        )}
+            <Inscription
+              firstName={this.state.userInfos.firstName}
+              setFirstName={this.setFirstName}
+              email={this.state.userInfos.email}
+              setEmail={this.setEmail}
+              password={this.state.userInfos.password}
+              setPassword={this.setPassword}
+              isTeacher={this.state.userInfos.isTeacher}
+              toggleIsTeacher={this.toggleIsTeacher}
+            />
+          )}
         {/* btn de connexion/validation de l'inscription/connexion */}
         <Button
           title="Se connecter"

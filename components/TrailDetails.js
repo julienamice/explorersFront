@@ -20,7 +20,7 @@ class TrailDetails extends Component {
 
   componentDidMount() {
     fetch(
-      `http://10.2.4.18:3001/trails/${this.props.navigation.state.params.id}`
+      `http://192.168.1.80:3001/trails/${this.props.navigation.state.params.id}`
     ) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailDetails: data })); // avec ces données modifie le state de trailList
@@ -171,7 +171,7 @@ class TrailDetails extends Component {
                 name="marker"
                 size={25}
                 color="#C1EA69"
-                // iconStyle={{ marginRight: 35 }}
+              // iconStyle={{ marginRight: 35 }}
               />
               <Text style={{ marginTop: "4%" }}>Départ</Text>
             </View>
@@ -232,22 +232,23 @@ class TrailDetails extends Component {
               color: "black",
               fontSize: 14
             }}
-<<<<<<< HEAD
-          >
+            onPress={() => navigate("IntroTrail", { id: this.props.id })}
+          />
+          {/* <Text>
             Parcours
-          </Text>
+          </Text> */}
           {/* {this.props.parcours} */}
-          <Text style={{ marginRight: 10, marginLeft: 10 }}>
+          {/* <Text style={{ marginRight: 10, marginLeft: 10 }}>
             <Foundation name="marker" size={15} />
-            <Text> </Text>
-            {/* {this.props.location} */}
-            location
-          </Text>
+            <Text> </Text> */}
+          {/* {this.props.location} */}
+          {/* location
+          </Text> */}
 
 
         </View>
-        <TouchableOpacity
-          onPress={() => navigate("IntroTrail", { id: this.props.id })}
+        {/* <TouchableOpacity
+
           style={{
             alignItems: 'center',
             backgroundColor: '#C1EA69',
@@ -258,7 +259,7 @@ class TrailDetails extends Component {
           }}
         >
           <Text>Select</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View >
     );
   }

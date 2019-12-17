@@ -37,7 +37,10 @@ const MainNavigator = createStackNavigator({
   },
 
   IntroTrail: {
-    screen: IntroTrail
+    screen: IntroTrail,
+    navigationOptions: () => ({
+      header: null
+    })
   },
 
   Compte: {
@@ -61,15 +64,18 @@ const MainNavigator = createStackNavigator({
   },
   Louvre3: {
     screen: Louvre3,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
 
   Mapps: {
     screen: Mapps,
-
     navigationOptions: () => ({
       header: null
     })
   }
-});
+})
 
 const Navigation = createAppContainer(MainNavigator);
 

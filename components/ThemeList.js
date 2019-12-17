@@ -11,7 +11,6 @@ class ThemeList extends Component {
   };
 
   componentDidMount() {
-
     AsyncStorage.getItem("user", (err, data) => {
       var userJSON = JSON.parse(data);
       console.log("user en JSON", userJSON);
@@ -21,8 +20,7 @@ class ThemeList extends Component {
     });
 
     // console.log("juste avant le fetch");
-    fetch("http://10.2.4.18:3001/trails") // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
-
+    fetch("http://192.168.1.80:3001/trails") // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailList: data })); // avec ces données modifie le state de trailList
   }
@@ -69,7 +67,6 @@ class ThemeList extends Component {
                   height: "5%",
                   marginBottom: -15
                 }}
-
               >
                 {/* gestion de l'écriture/du texte de l'encart "quizz du mois" */}
                 <Text
@@ -153,42 +150,12 @@ class ThemeList extends Component {
                   />
                 ))}
               </View>
-
-              {/* gestion  de l'encart "tous les parcours"*/}
-              <Text
-                style={{
-                  color: "black",
-                  fontStyle: "italic",
-                  fontWeight: "bold",
-                  fontSize: 30,
-                  marginTop: 15,
-                  marginBottom: 10
-                }}
-              >
-                Tous les parcours
-                <Text> </Text>
-                <Feather name="sliders" size={20} />
-              </Text>
-              {/* map sur l'array trailList pour afficher autant de TraiilCard que souhaité */}
-              {trailList.map((trail, i) => (
-                <TrailCard
-                  key={trail.id + i}
-                  id={trail.id}
-                  location={trail.location}
-                  parcours={trail.parcours}
-                  rating={trail.rating}
-                  onPress={() => {
-                    console.log("héhé");
-                  }}
-                />
-              ))}
-            </View>
-          </ScrollView>
-        </View>
-      </ImageBackground>
-
+            </ScrollView>
+          </View>
+        </ImageBackground>
+      </View>
     );
   }
 }
 
-export default ThemeList;
+export default ThemeList
