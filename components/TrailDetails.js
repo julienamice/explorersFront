@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { View, Image, ScrollView } from "react-native";
+
+import { View, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Button, Text, Icon } from "react-native-elements";
 import { Foundation } from "@expo/vector-icons";
 import Mapps from "./Mapps";
@@ -227,6 +228,7 @@ class TrailDetails extends Component {
             </View>
           </View>
         </ScrollView>
+
         <View
           style={{
             width: "100%",
@@ -251,11 +253,35 @@ class TrailDetails extends Component {
               bottom: "100%"
             }}
             onPress={() => {
-              this.go();
+              //this.go();
               // console.log("en construction");
+              navigate("IntroTrail", { id: this.props.id });
             }}
           />
+          {/* <Text>
+            Parcours
+          </Text> */}
+          {/* {this.props.parcours} */}
+          {/* <Text style={{ marginRight: 10, marginLeft: 10 }}>
+            <Foundation name="marker" size={15} />
+            <Text> </Text> */}
+          {/* {this.props.location} */}
+          {/* location
+          </Text> */}
         </View>
+        {/* <TouchableOpacity
+
+          style={{
+            alignItems: 'center',
+            backgroundColor: '#C1EA69',
+            width: '86%',
+            height: 40,
+            borderRadius: 4,
+            borderColor: 'transparent'
+          }}
+        >
+          <Text>Select</Text>
+        </TouchableOpacity> */}
       </View>
     );
   }
