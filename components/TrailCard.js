@@ -54,7 +54,8 @@ class TrailCard extends Component {
             style={{
               borderTopLeftRadius: 5,
               borderTopRightRadius: 5,
-              height: 250,
+              height: 215,
+              marginBottom: -5,
               width: "100%"
             }}
             // resizeMode="contain"

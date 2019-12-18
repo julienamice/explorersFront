@@ -71,9 +71,13 @@ class PNIntro extends Component {
             alignSelf: "center"
           }}
         >
-          <Text>
-            But de l'énigme du Pont-Neuf : Tu vas découvrir à quelle date le
-            plus vieux pont de Paris fut classé aux monuments historiques !
+          <Text style={{ fontSize: 22, fontWeight: "700" }}>
+            But de l'énigme du Pont-Neuf :
+          </Text>
+          <Text> </Text>
+          <Text style={{ fontSize: 15, fontWeight: "400" }}>
+            Tu vas découvrir à quelle date le plus vieux pont de Paris fut
+            classé aux monuments historiques !
           </Text>
           <Button
             title="GO"
@@ -83,7 +87,7 @@ class PNIntro extends Component {
             }}
             buttonStyle={{
               backgroundColor: "#C1EA69",
-              marginLeft: "9%",
+              marginLeft: "8%",
               marginBottom: "1.5%",
               width: "80%",
               height: 40,

@@ -57,8 +57,8 @@ class ThemeList extends Component {
             <ScrollView
               style={{
                 width: "90%",
-                height: "90%",
-                marginBottom: -25,
+                height: "120%",
+                marginBottom: 25,
                 zIndex: 0
               }}
               showsVerticalScrollIndicator={false}
