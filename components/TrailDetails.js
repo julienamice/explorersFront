@@ -4,9 +4,9 @@ import { View, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Button, Text, Icon } from "react-native-elements";
 import { Foundation } from "@expo/vector-icons";
 import Mapps from "./Mapps";
-
-
-
+import { ip } from "../config";
+import MyImage from "./Image";
+import PNIntro from "./PNIntro";
 
 class TrailDetails extends Component {
   state = {
@@ -18,10 +18,12 @@ class TrailDetails extends Component {
     this.setState({ displayTeacher: !this.state.displayTeacher });
   };
 
+  go = () => {
+    this.props.navigation.navigate("PNIntro");
+  };
+
   componentDidMount() {
-    fetch(
-      `http://192.168.1.80:3001/trails/${this.props.navigation.state.params.id}`
-    ) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
+    fetch(`http://${ip}:3001/trails/${this.props.navigation.state.params.id}`) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailDetails: data })); // avec ces données modifie le state de trailList
   }
@@ -31,7 +33,6 @@ class TrailDetails extends Component {
     const { navigate } = this.props.navigation;
     // console.log(navigation.state.params.id);
     return (
-
       <View>
         {/*  gestion de l'affichage global */}
         <ScrollView
@@ -50,8 +51,8 @@ class TrailDetails extends Component {
             // backgroundColor: "#D3D4D5",
             borderTopWidth: 0
           }}
-
           showsVerticalScrollIndicator={false}
+          // contentContainerStyle={StyleSheet.absoluteFillObject}
         >
           <Button
             icon={<Icon name="arrow-back" color="black" />}
@@ -69,11 +70,12 @@ class TrailDetails extends Component {
           />
           {/* récupérer l'id pour faire un test dessus pour savoir de quelle case du tab trailList il faut afficher les infos */}
           {/* <Text>parcours : {navigation.state.params.id}</Text> */}
-          <Image
-            source={require("../assets/aventure.png")}
+          <MyImage
+            type={this.state.trailDetails.img}
             style={{
               borderTopLeftRadius: 5,
               borderTopRightRadius: 5,
+              height: 250,
               width: "100%"
             }}
           />
@@ -104,18 +106,24 @@ class TrailDetails extends Component {
                 marginTop: 10
               }}
             >
-              <Text h2>{this.state.trailDetails.parcours}</Text>
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                {this.state.trailDetails.parcours}
+              </Text>
               {/* {this.props.parcours} */}
-              <Text h5 style={{ marginRight: 10, marginTop: 10 }}>
+              <Text style={{ marginRight: 10, marginTop: 10, fontSize: 14 }}>
                 <Foundation name="marker" size={20} color="#C1EA69" />
                 <Text> </Text>
                 {this.state.trailDetails.location}
               </Text>
             </View>
-            <Text h4>{this.state.trailDetails.subtitle}</Text>
-            <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
+            <Text style={{ fontSize: 16 }}>
+              {this.state.trailDetails.subtitle}
+            </Text>
+            <Text style={{ height: 60 }}>{this.state.trailDetails.desc}</Text>
             {this.state.displayTeacher && (
-              <Text h4>{this.state.trailDetails.details}</Text>
+              <Text style={{ fontSize: 18, fontWeight: "bold", height: 150 }}>
+                {this.state.trailDetails.details}
+              </Text>
             )}
             {/* <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
             <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
@@ -146,7 +154,9 @@ class TrailDetails extends Component {
               elevation: 5
             }}
           >
-            <Mapps />
+            <View style={{ flex: 1 }}>
+              <Mapps />
+            </View>
             {/* <Image
               source={require("../assets/Map2.png")}
               style={{
@@ -171,7 +181,7 @@ class TrailDetails extends Component {
                 name="marker"
                 size={25}
                 color="#C1EA69"
-              // iconStyle={{ marginRight: 35 }}
+                // iconStyle={{ marginRight: 35 }}
               />
               <Text style={{ marginTop: "4%" }}>Départ</Text>
             </View>
@@ -232,7 +242,21 @@ class TrailDetails extends Component {
               color: "black",
               fontSize: 14
             }}
-            onPress={() => navigate("IntroTrail", { id: this.props.id })}
+            buttonStyle={{
+              backgroundColor: "#C1EA69",
+              marginLeft: "9%",
+              marginBottom: "1.5%",
+              width: "80%",
+              height: 38,
+              // borderRadius: 20,
+              position: "absolute",
+              bottom: "100%"
+            }}
+            onPress={() => {
+              //this.go();
+              // console.log("en construction");
+              navigate("IntroTrail", { id: this.props.id });
+            }}
           />
           {/* <Text>
             Parcours
@@ -244,8 +268,6 @@ class TrailDetails extends Component {
           {/* {this.props.location} */}
           {/* location
           </Text> */}
-
-
         </View>
         {/* <TouchableOpacity
 
@@ -260,7 +282,7 @@ class TrailDetails extends Component {
         >
           <Text>Select</Text>
         </TouchableOpacity> */}
-      </View >
+      </View>
     );
   }
 }

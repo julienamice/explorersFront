@@ -4,6 +4,7 @@ import { Button } from "react-native-elements";
 import { withNavigation } from "react-navigation";
 import { Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
 import Parameters from "./Parameters";
+import { ip } from "../config";
 
 class Compte extends Component {
   state = {
@@ -12,7 +13,7 @@ class Compte extends Component {
   };
 
   componentDidMount() {
-    fetch("http://192.168.1.21:3001/users/1") // fetch sur la route / de users/id //192.168.1.21 || 10.2.4.18
+    fetch(`http://${ip}:3001/users/1`) // fetch sur la route / de users/id //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de userInfos
       .then(
         data =>
@@ -40,7 +41,6 @@ class Compte extends Component {
           width: "98%",
           height: "94.5%",
           position: "absolute",
-          // right: 5,
           marginTop: "9%",
           marginLeft: "1%",
           borderWidth: 2,
@@ -67,9 +67,6 @@ class Compte extends Component {
             icon={<AntDesign name="close" size={20} />}
             buttonStyle={{
               backgroundColor: "transparent",
-              // position: "absolute",
-              // bottom: 4,
-              // right: "55%",
               left: "550%",
               top: "5%",
               borderColor: "transparent",
@@ -96,7 +93,6 @@ class Compte extends Component {
             style={{
               fontSize: 16,
               fontWeight: "bold",
-              // color: "black",
               marginLeft: "3%",
               marginTop: "6%"
             }}
@@ -202,7 +198,6 @@ class Compte extends Component {
               backgroundColor: "transparent",
               position: "absolute",
               left: "10%",
-              // paddingTop: "-20%",
               marginTop: "4%",
               borderColor: "transparent"
             }}
@@ -220,7 +215,6 @@ class Compte extends Component {
               backgroundColor: "transparent",
               position: "absolute",
               right: "8%",
-              // paddingTop: "-20%",
               marginTop: "4%",
               borderColor: "transparent"
             }}
@@ -234,6 +228,5 @@ class Compte extends Component {
     );
   }
 }
-//   console.log("toto");
 
 export default withNavigation(Compte);

@@ -1,20 +1,21 @@
-
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
 import TrailDetails from "./components/TrailDetails";
 import ThemeList from "./components/ThemeList";
 
-import IntroTrail from './components/intro.enigma';
+import IntroTrail from "./components/intro.enigma";
 
-import Louvre1 from './components/louvre1.enigma';
-import Louvre2 from './components/louvre2.enigma';
-import Louvre3 from './components/louvre3.enigma';
+import Louvre1 from "./components/louvre1.enigma";
+import Louvre2 from "./components/louvre2.enigma";
+import Louvre3 from "./components/louvre3.enigma";
 
 import Compte from "./components/Compte";
 import Mapps from "./components/Mapps";
 import Sign from "./components/Sign";
-
+import PNIntro from "./components/PNIntro";
+import PNStep from "./components/PNStep";
+// import Test from "./components/Test";
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -74,8 +75,20 @@ const MainNavigator = createStackNavigator({
     navigationOptions: () => ({
       header: null
     })
+  },
+  PNIntro: {
+    screen: PNIntro,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  PNStep: {
+    screen: PNStep,
+    navigationOptions: () => ({
+      header: null
+    })
   }
-})
+});
 
 const Navigation = createAppContainer(MainNavigator);
 

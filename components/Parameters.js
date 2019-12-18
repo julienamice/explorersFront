@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Button } from "react-native-elements";
-import { View, Image, Text, TextInput } from "react-native";
+import { withNavigation } from "react-navigation";
+import { View, Image, Text, TextInput, AsyncStorage } from "react-native";
 import SwitchToggle from "react-native-switch-toggle";
+import { ip } from "../config";
 
 class Parameters extends Component {
   state = {
@@ -11,7 +13,7 @@ class Parameters extends Component {
   };
 
   componentDidMount() {
-    fetch("http://192.168.1.21:3001/users/1") // fetch sur la route / de users/id //192.168.1.21 || 10.2.4.18
+    fetch(`http://${ip}:3001/users/1`) // fetch sur la route / de users/id //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de userInfos
       .then(
         data =>
@@ -31,9 +33,30 @@ class Parameters extends Component {
       form: { ...this.state.form, teacher: !this.state.switchOn1 }
     });
   };
-
-  delete = () => {
-    console.log("en cours");
+  //   delete = async () => {
+  // const storage = await AsyncStorage.getItem("user", (err, data) => JSON.parse(data))
+  delete = async () => {
+    const rawStorage = await AsyncStorage.getItem(
+      "user"
+      //   return { toto: "toto" };
+      //   return JSON.parse(data);
+      // if (userJSON) {
+      //   console.log("userJSON existe !");
+    );
+    // console.log("user en JSON", storage);
+    // console.log("en cours");
+    // console.log(storage, storage["_id"], storage['/"_id"/'], storage._id);
+    console.log("ICI", JSON.parse(rawStorage));
+    const storage = JSON.parse(rawStorage);
+    fetch(`http://${ip}:3001/users/${storage._id}`, {
+      method: "DELETE"
+    })
+      .then(console.log("user deleted"))
+      .then(() => AsyncStorage.clear())
+      .then(() => this.props.navigation.navigate("Home"))
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   render() {
@@ -42,11 +65,8 @@ class Parameters extends Component {
         style={{
           width: "100%",
           height: 360,
-          //   borderWidth: 1,
           backgroundColor: "white",
-          //   borderRadius: 2,
           paddingLeft: "5%",
-          //   paddingTop: "-25%"
           marginTop: 20
         }}
       >
@@ -193,7 +213,6 @@ class Parameters extends Component {
               backgroundColor: "#C1EA69",
               width: 300,
               marginLeft: 5
-              //   marginBottom: -15
             }}
             onPress={() => console.log(this.state.form)}
           />
@@ -202,4 +221,4 @@ class Parameters extends Component {
     );
   }
 }
-export default Parameters;
+export default withNavigation(Parameters);

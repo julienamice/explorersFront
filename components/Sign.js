@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  TextInput,
-  AsyncStorage
-} from "react-native";
+import { View, Image, TextInput, AsyncStorage } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Text, Button } from "react-native-elements";
 import SwitchToggle from "react-native-switch-toggle";
-import { Foundation, FontAwesome } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { ip } from "../config";
 
 class Sign extends Component {
   state = {
@@ -31,8 +26,8 @@ class Sign extends Component {
     });
 
     fetch(
-      `http://192.168.1.80:3001/users/${
-      this.state.connexionMode ? "signin" : "signup"
+      `http://${ip}:3001/users/${
+        this.state.connexionMode ? "signin" : "signup"
       }`,
       {
         method: "POST",
@@ -46,6 +41,15 @@ class Sign extends Component {
       // Load data in local storage and navigate to home page // comme on renvoie user tout court c'est pas data.user mais data
       .then(async data => {
         await AsyncStorage.setItem("user", JSON.stringify(data));
+        this.setState({
+          userInfos: {
+            firstName: "",
+            email: "",
+            password: "",
+            isTeacher: false
+          },
+          connexionMode: false
+        });
         this.props.navigation.navigate("ThemeList");
       })
       .catch(error => {
@@ -141,22 +145,22 @@ class Sign extends Component {
               onPress={this.onPressConnex}
             />
           ) : (
-              <Button
-                title="Connexion"
-                titleStyle={{ color: "black", marginLeft: 5 }}
-                buttonStyle={{
-                  backgroundColor: "transparent",
-                  position: "absolute",
-                  left: 20,
-                  top: 3,
-                  marginTop: "4%",
-                  borderColor: "transparent",
-                  flexDirection: "column-reverse"
-                }}
-                icon={<FontAwesome name="circle" size={10} color="transparent" />}
-                onPress={this.onPressConnex}
-              />
-            )}
+            <Button
+              title="Connexion"
+              titleStyle={{ color: "black", marginLeft: 5 }}
+              buttonStyle={{
+                backgroundColor: "transparent",
+                position: "absolute",
+                left: 25,
+                top: 3,
+                marginTop: "4%",
+                borderColor: "transparent",
+                flexDirection: "column-reverse"
+              }}
+              icon={<FontAwesome name="circle" size={10} color="transparent" />}
+              onPress={this.onPressConnex}
+            />
+          )}
           {connexionMode ? (
             <Button
               title="Inscription"
@@ -174,22 +178,22 @@ class Sign extends Component {
               onPress={this.onPressInscription}
             />
           ) : (
-              <Button
-                title="Inscription"
-                titleStyle={{ color: "black", marginLeft: 5 }}
-                buttonStyle={{
-                  backgroundColor: "transparent",
-                  position: "absolute",
-                  left: 150,
-                  top: 3,
-                  marginTop: "4%",
-                  borderColor: "transparent",
-                  flexDirection: "column-reverse"
-                }}
-                icon={<FontAwesome name="circle" size={10} color="#C1EA69" />}
-                onPress={this.onPressInscription}
-              />
-            )}
+            <Button
+              title="Inscription"
+              titleStyle={{ color: "black", marginLeft: 5 }}
+              buttonStyle={{
+                backgroundColor: "transparent",
+                position: "absolute",
+                left: 150,
+                top: 3,
+                marginTop: "4%",
+                borderColor: "transparent",
+                flexDirection: "column-reverse"
+              }}
+              icon={<FontAwesome name="circle" size={10} color="#C1EA69" />}
+              onPress={this.onPressInscription}
+            />
+          )}
         </View>
         {/* en fonction de l'état de connexionMode, on passe certaines infos en props respectivements à connexion et a inscription*/}
         {connexionMode ? (
@@ -200,17 +204,17 @@ class Sign extends Component {
             setPassword={this.setPassword}
           />
         ) : (
-            <Inscription
-              firstName={this.state.userInfos.firstName}
-              setFirstName={this.setFirstName}
-              email={this.state.userInfos.email}
-              setEmail={this.setEmail}
-              password={this.state.userInfos.password}
-              setPassword={this.setPassword}
-              isTeacher={this.state.userInfos.isTeacher}
-              toggleIsTeacher={this.toggleIsTeacher}
-            />
-          )}
+          <Inscription
+            firstName={this.state.userInfos.firstName}
+            setFirstName={this.setFirstName}
+            email={this.state.userInfos.email}
+            setEmail={this.setEmail}
+            password={this.state.userInfos.password}
+            setPassword={this.setPassword}
+            isTeacher={this.state.userInfos.isTeacher}
+            toggleIsTeacher={this.toggleIsTeacher}
+          />
+        )}
         {/* btn de connexion/validation de l'inscription/connexion */}
         <Button
           title="Se connecter"
@@ -318,7 +322,7 @@ class Inscription extends Component {
           value={password}
           placeholder="********"
         />
-        <Text style={{ position: "absolute", top: 220, left: 40 }}>
+        <Text style={{ position: "absolute", top: 218, left: 40 }}>
           Teacher
         </Text>
         <SwitchToggle
