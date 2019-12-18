@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { View, Image, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Text } from "react-native-elements";
 import { Foundation, FontAwesome } from "@expo/vector-icons";
+import MyImage from "./Image";
 
 const getRating = score => {
   const rating = [];
@@ -48,15 +49,24 @@ class TrailCard extends Component {
             elevation: 5
           }}
         >
-          <Image
-            source={require("../assets/aventure.png")}
+          <MyImage
+            type={this.props.img}
             style={{
               borderTopLeftRadius: 5,
               borderTopRightRadius: 5,
+              height: 250,
               width: "100%"
             }}
+            // resizeMode="contain"
           />
-          <Text h5 style={{ marginRight: 10, marginLeft: 10, marginTop: 10 }}>
+          <Text
+            style={{
+              marginRight: 10,
+              marginLeft: 10,
+              marginTop: 10,
+              fontSize: 14
+            }}
+          >
             <Foundation
               name="marker"
               size={15}
@@ -68,10 +78,11 @@ class TrailCard extends Component {
           </Text>
 
           <Text
-            h2
             style={{
               marginRight: 10,
-              marginLeft: 10
+              marginLeft: 10,
+              fontSize: 20,
+              fontWeight: "bold"
             }}
           >
             {this.props.parcours}
@@ -83,11 +94,14 @@ class TrailCard extends Component {
               justifyContent: "space-between",
               marginBottom: 15,
               marginRight: 10,
-              marginLeft: 10
+              marginLeft: 10,
+              fontSize: 16
             }}
           >
-            <Text h4>{this.props.subtitle}</Text>
-            <Text style={{ marginTop: 10 }}>
+            <View style={{ width: 200 }}>
+              <Text>{this.props.subtitle}</Text>
+            </View>
+            <Text style={{ marginTop: 17 }}>
               {getRating(this.props.rating)}
             </Text>
           </View>

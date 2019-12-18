@@ -4,6 +4,8 @@ import { Button, Text } from "react-native-elements";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import Header from "./Header";
 import TrailCard from "./TrailCard";
+import { ip } from "../config";
+// import Test from "../components/Test";
 
 class ThemeList extends Component {
   state = {
@@ -11,22 +13,24 @@ class ThemeList extends Component {
   };
 
   componentDidMount() {
-    AsyncStorage.getItem("user", (err, data) => {
-      var userJSON = JSON.parse(data);
-      console.log("user en JSON", userJSON);
-      if (userJSON) {
-        console.log("userJSON existe !");
-      }
-    });
+    // AsyncStorage.getItem("user", (err, data) => {
+    //   var userJSON = JSON.parse(data);
+    //   // console.log("user en JSON", userJSON);
+    //   if (userJSON) {
+    //     // console.log("userJSON existe !");
+    //   }
+    // });
 
     // console.log("juste avant le fetch");
-    fetch("http://10.2.4.18:3001/trails") // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
+    fetch(`http://${ip}:3001/trails`) // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailList: data })); // avec ces données modifie le state de trailList
   }
 
   onPress = () => {
-    this.props.navigation.navigate("Mapps");
+    console.log("en cours");
+    // this.props.navigation.navigate("Mapps");
+    // this.props.navigation.navigate("Test");
   };
 
   render() {
@@ -74,7 +78,7 @@ class ThemeList extends Component {
                     color: "black",
                     fontStyle: "italic",
                     fontWeight: "bold",
-                    fontSize: 30
+                    fontSize: 25
                   }}
                 >
                   {/* texte apparaissant dans l'encart */}
@@ -95,10 +99,13 @@ class ThemeList extends Component {
                     backgroundColor: "rgba(217, 198, 186, 0.6)"
                   }}
                 >
-                  <Text h5 style={{ marginTop: 20, marginLeft: 10 }}>
+                  <Text style={{ marginTop: 20, marginLeft: 10, fontSize: 14 }}>
                     15 Questions
                   </Text>
-                  <Text h4 style={{ marginRight: 20, marginLeft: 10 }}>
+                  <Text
+                    h4
+                    style={{ marginRight: 20, marginLeft: 10, fontSize: 17 }}
+                  >
                     Révolution Industrielle
                   </Text>
                   <Button
@@ -124,7 +131,7 @@ class ThemeList extends Component {
                     color: "black",
                     // fontStyle: "italic",
                     fontWeight: "bold",
-                    fontSize: 30,
+                    fontSize: 25,
                     marginTop: 15,
                     marginBottom: 10
                   }}
@@ -147,6 +154,7 @@ class ThemeList extends Component {
                     parcours={trail.parcours}
                     rating={trail.rating}
                     subtitle={trail.subtitle}
+                    img={trail.img}
                   />
                 ))}
               </View>

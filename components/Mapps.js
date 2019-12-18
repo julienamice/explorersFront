@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, Dimensions } from "react-native";
 import MapView, { Polygon, Marker } from "react-native-maps";
 import { Button, Icon } from "react-native-elements";
 
@@ -9,16 +9,23 @@ class Mapps extends Component {
     currentLongitude: 0,
     latitudeDelta: 0.2,
     longitudeDelta: 0.2,
-    position: []
+    position: [],
+    isReady: false
+  };
+
+  onMapLayout = () => {
+    this.setState({ isReady: true });
   };
 
   render() {
     // const { navigate } = this.props.navigation;
+    // const { heightM, widthM } = Dimensions.get("window");
     return (
       <View
         style={{
           width: "90%",
           height: "80%",
+          //   position: "relative",
           backgroundColor: "white",
           borderRadius: 2,
           //   marginTop: 50,
@@ -41,7 +48,8 @@ class Mapps extends Component {
           onPress={() => this.props.navigation.navigate("Home")}
         />
         <MapView
-          style={{ width: "100%", height: "100%", flex: 1 }}
+          //   style={{ width: widthM, height: heightM, flex: 1 }}
+          style={{ width: 250, height: 200 }}
           zoomEnabled={true}
           showsUserLocation={true}
           initialRegion={{
@@ -49,74 +57,88 @@ class Mapps extends Component {
             // longitude: 2.333333,
             latitude: 48.864824,
             longitude: 2.334595,
-            latitudeDelta: 0.1,
-            longitudeDelta: 0.1
+            latitudeDelta: 0.05,
+            longitudeDelta: 0.05
           }}
           region={this.state.region}
+          onLayout={this.onMapLayout}
         >
-          <Marker
-            title="1"
-            coordinate={{
-              latitude: 48.881304,
-              longitude: 2.346062
-            }}
-          />
-          <Marker
-            title="2"
-            coordinate={{
-              latitude: 48.875323,
-              longitude: 2.316815
-            }}
-          />
-          <Marker
-            title="3"
-            coordinate={{
-              latitude: 48.862505,
-              longitude: 2.352124
-            }}
-          />
-          <Marker
-            title="4"
-            coordinate={{
-              latitude: 48.852153,
-              longitude: 2.291786
-            }}
-          />
-          <Marker
-            title="Louvre"
-            coordinate={{
-              latitude: 48.864824,
-              longitude: 2.334595
-            }}
-          />
-          <Marker
-            title="Pont-Neuf"
-            coordinate={{
-              latitude: 48.858001,
-              longitude: 2.341353
-            }}
-          />
-
-          <Polygon
-            coordinates={[
-              { latitude: 48.881304, longitude: 2.346062 },
-              { latitude: 48.862505, longitude: 2.352124 },
-              { latitude: 48.858001, longitude: 2.341353 },
-              { latitude: 48.852153, longitude: 2.291786 },
-              { latitude: 48.875323, longitude: 2.316815 }
-            ]}
-            strokeColor="rgb(217, 198, 186)"
-            // au cas où strokeColor, n'est pas supporté
-            strokeColors={[
-              "#D9C6BA",
-              "#D9C6BA",
-              "#D9C6BA",
-              "#D9C6BA",
-              "#D9C6BA"
-            ]}
-            strokeWidth={3}
-            fillColor="rgba(217, 198, 186, 0.5)"
-          />
+          {this.state.isReady && (
+            <Marker
+              title="1"
+              coordinate={{
+                latitude: 48.881304,
+                longitude: 2.346062
+              }}
+            />
+          )}
+          {this.state.isReady && (
+            <Marker
+              title="2"
+              coordinate={{
+                latitude: 48.875323,
+                longitude: 2.316815
+              }}
+            />
+          )}
+          {this.state.isReady && (
+            <Marker
+              title="3"
+              coordinate={{
+                latitude: 48.862505,
+                longitude: 2.352124
+              }}
+            />
+          )}
+          {this.state.isReady && (
+            <Marker
+              title="4"
+              coordinate={{
+                latitude: 48.852153,
+                longitude: 2.291786
+              }}
+            />
+          )}
+          {this.state.isReady && (
+            <Marker
+              title="Louvre"
+              coordinate={{
+                latitude: 48.864824,
+                longitude: 2.334595
+              }}
+            />
+          )}
+          {this.state.isReady && (
+            <Marker
+              title="Pont-Neuf"
+              coordinate={{
+                latitude: 48.858001,
+                longitude: 2.341353
+              }}
+            />
+          )}
+          {this.state.isReady && (
+            <Polygon
+              coordinates={[
+                { latitude: 48.881304, longitude: 2.346062 },
+                { latitude: 48.862505, longitude: 2.352124 },
+                { latitude: 48.858001, longitude: 2.341353 },
+                { latitude: 48.852153, longitude: 2.291786 },
+                { latitude: 48.875323, longitude: 2.316815 }
+              ]}
+              strokeColor="rgb(217, 198, 186)"
+              // au cas où strokeColor, n'est pas supporté
+              strokeColors={[
+                "#D9C6BA",
+                "#D9C6BA",
+                "#D9C6BA",
+                "#D9C6BA",
+                "#D9C6BA"
+              ]}
+              strokeWidth={3}
+              fillColor="rgba(217, 198, 186, 0.5)"
+            />
+          )}
         </MapView>
       </View>
     );

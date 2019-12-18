@@ -3,6 +3,9 @@ import { View, Image, ScrollView } from "react-native";
 import { Button, Text, Icon } from "react-native-elements";
 import { Foundation } from "@expo/vector-icons";
 import Mapps from "./Mapps";
+import { ip } from "../config";
+import MyImage from "./Image";
+import PNIntro from "./PNIntro";
 
 class TrailDetails extends Component {
   state = {
@@ -14,10 +17,12 @@ class TrailDetails extends Component {
     this.setState({ displayTeacher: !this.state.displayTeacher });
   };
 
+  go = () => {
+    this.props.navigation.navigate("PNIntro");
+  };
+
   componentDidMount() {
-    fetch(
-      `http://10.2.4.18:3001/trails/${this.props.navigation.state.params.id}`
-    ) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
+    fetch(`http://${ip}:3001/trails/${this.props.navigation.state.params.id}`) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailDetails: data })); // avec ces données modifie le state de trailList
   }
@@ -46,6 +51,7 @@ class TrailDetails extends Component {
             borderTopWidth: 0
           }}
           showsVerticalScrollIndicator={false}
+          // contentContainerStyle={StyleSheet.absoluteFillObject}
         >
           <Button
             icon={<Icon name="arrow-back" color="black" />}
@@ -63,11 +69,12 @@ class TrailDetails extends Component {
           />
           {/* récupérer l'id pour faire un test dessus pour savoir de quelle case du tab trailList il faut afficher les infos */}
           {/* <Text>parcours : {navigation.state.params.id}</Text> */}
-          <Image
-            source={require("../assets/aventure.png")}
+          <MyImage
+            type={this.state.trailDetails.img}
             style={{
               borderTopLeftRadius: 5,
               borderTopRightRadius: 5,
+              height: 250,
               width: "100%"
             }}
           />
@@ -98,18 +105,24 @@ class TrailDetails extends Component {
                 marginTop: 10
               }}
             >
-              <Text h2>{this.state.trailDetails.parcours}</Text>
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                {this.state.trailDetails.parcours}
+              </Text>
               {/* {this.props.parcours} */}
-              <Text h5 style={{ marginRight: 10, marginTop: 10 }}>
+              <Text style={{ marginRight: 10, marginTop: 10, fontSize: 14 }}>
                 <Foundation name="marker" size={20} color="#C1EA69" />
                 <Text> </Text>
                 {this.state.trailDetails.location}
               </Text>
             </View>
-            <Text h4>{this.state.trailDetails.subtitle}</Text>
-            <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
+            <Text style={{ fontSize: 16 }}>
+              {this.state.trailDetails.subtitle}
+            </Text>
+            <Text style={{ height: 60 }}>{this.state.trailDetails.desc}</Text>
             {this.state.displayTeacher && (
-              <Text h4>{this.state.trailDetails.details}</Text>
+              <Text style={{ fontSize: 18, fontWeight: "bold", height: 150 }}>
+                {this.state.trailDetails.details}
+              </Text>
             )}
             {/* <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
             <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
@@ -140,7 +153,9 @@ class TrailDetails extends Component {
               elevation: 5
             }}
           >
-            <Mapps />
+            <View style={{ flex: 1 }}>
+              <Mapps />
+            </View>
             {/* <Image
               source={require("../assets/Map2.png")}
               style={{
@@ -236,8 +251,8 @@ class TrailDetails extends Component {
               bottom: "100%"
             }}
             onPress={() => {
-              // this.onPress();
-              console.log("en construction");
+              this.go();
+              // console.log("en construction");
             }}
           />
         </View>

@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  TextInput,
-  AsyncStorage
-} from "react-native";
+import { View, Image, TextInput, AsyncStorage } from "react-native";
 import { withNavigation } from "react-navigation";
 import { Text, Button } from "react-native-elements";
 import SwitchToggle from "react-native-switch-toggle";
-import { Foundation, FontAwesome } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { ip } from "../config";
 
 class Sign extends Component {
   state = {
@@ -31,7 +26,7 @@ class Sign extends Component {
     });
 
     fetch(
-      `http://10.2.4.18:3001/users/${
+      `http://${ip}:3001/users/${
         this.state.connexionMode ? "signin" : "signup"
       }`,
       {
@@ -46,6 +41,15 @@ class Sign extends Component {
       // Load data in local storage and navigate to home page // comme on renvoie user tout court c'est pas data.user mais data
       .then(async data => {
         await AsyncStorage.setItem("user", JSON.stringify(data));
+        this.setState({
+          userInfos: {
+            firstName: "",
+            email: "",
+            password: "",
+            isTeacher: false
+          },
+          connexionMode: false
+        });
         this.props.navigation.navigate("ThemeList");
       })
       .catch(error => {
@@ -147,7 +151,7 @@ class Sign extends Component {
               buttonStyle={{
                 backgroundColor: "transparent",
                 position: "absolute",
-                left: 20,
+                left: 25,
                 top: 3,
                 marginTop: "4%",
                 borderColor: "transparent",
@@ -318,7 +322,7 @@ class Inscription extends Component {
           value={password}
           placeholder="********"
         />
-        <Text style={{ position: "absolute", top: 220, left: 40 }}>
+        <Text style={{ position: "absolute", top: 218, left: 40 }}>
           Teacher
         </Text>
         <SwitchToggle
