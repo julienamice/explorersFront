@@ -17,7 +17,8 @@ class Louvre3 extends Component {
             item2: { x: 0, y: 0 },
             item3: { x: 0, y: 0 },
             item4: { x: 0, y: 0 },
-            posPlan: { x: null, y: null }
+            posPlan: { x: null, y: null },
+            count: 0
         };
 
     }
@@ -67,6 +68,9 @@ class Louvre3 extends Component {
             console.log('Item 4 bien placé')
             countCheck++
         } else { console.log('Item 4 PAS BIEN PLACE DU TOUT') }
+        this.setState({
+            count: countCheck
+        })
         if (countCheck === 4) {
             navigate("EnigmaEnd", {})
         }
@@ -240,7 +244,7 @@ class Louvre3 extends Component {
                             style={{ height: 8 * widthRatio, width: 21 * widthRatio }}
                         />
                     </Animated.View>
-
+                    <Text>Nombre d'extensions bien placées : ${this.state.count} </Text>
                 </View>
 
 

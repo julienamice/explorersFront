@@ -4,7 +4,7 @@ import { Button, Text } from "react-native-elements";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import Header from "./Header";
 import TrailCard from "./TrailCard";
-import { ip } from "../config";
+import ip from "../config";
 // import Test from "../components/Test";
 
 class ThemeList extends Component {
@@ -20,7 +20,7 @@ class ThemeList extends Component {
     //     // console.log("userJSON existe !");
     //   }
     // });
-
+    console.log(ip)
     // console.log("juste avant le fetch");
     fetch(`http://${ip}:3001/trails`) // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
