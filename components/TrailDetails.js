@@ -23,7 +23,7 @@ class TrailDetails extends Component {
   };
 
   componentDidMount() {
-    fetch(`http://${ip}:3001/trails/${this.props.navigation.state.params.id}`) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
+    fetch(`http://localhost:3001/trails/${this.props.navigation.state.params.id}`) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailDetails: data })); // avec ces données modifie le state de trailList
   }
@@ -52,7 +52,7 @@ class TrailDetails extends Component {
             borderTopWidth: 0
           }}
           showsVerticalScrollIndicator={false}
-          // contentContainerStyle={StyleSheet.absoluteFillObject}
+        // contentContainerStyle={StyleSheet.absoluteFillObject}
         >
           <Button
             icon={<Icon name="arrow-back" color="black" />}
@@ -181,7 +181,7 @@ class TrailDetails extends Component {
                 name="marker"
                 size={25}
                 color="#C1EA69"
-                // iconStyle={{ marginRight: 35 }}
+              // iconStyle={{ marginRight: 35 }}
               />
               <Text style={{ marginTop: "4%" }}>Départ</Text>
             </View>
