@@ -28,7 +28,11 @@ class TrailCard extends Component {
     const { navigate } = this.props.navigation;
     return (
       <TouchableOpacity
-        onPress={() => navigate("TrailDetails", { id: this.props.id })}
+        onPress={() =>
+          navigate("TrailDetails", {
+            id: this.props.id
+          })
+        }
       >
         <View
           style={{

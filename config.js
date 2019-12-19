@@ -1,3 +1,3 @@
-var ipAdress = 'localhost:3001/'
+var ipAdress = "192.168.1.21:3001/";
 
-module.exports = ipAdress
+module.exports = ipAdress;

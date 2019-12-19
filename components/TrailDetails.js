@@ -7,6 +7,7 @@ import Mapps from "./Mapps";
 import { ip } from "../config";
 import MyImage from "./Image";
 import PNIntro from "./PNIntro";
+import SwitchMapps from "./SwitchMapps";
 
 class TrailDetails extends Component {
   state = {
@@ -19,14 +20,30 @@ class TrailDetails extends Component {
   };
 
   go = () => {
-    this.props.navigation.navigate("PNIntro");
+    this.props.navigation.navigate("IntroTrail");
   };
 
   componentDidMount() {
-    fetch(`http://localhost:3001/trails/enigma${this.props.navigation.state.params.id}`) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
+    this.loadTrail();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.navigation.state.params.id ===
+      this.props.navigation.state.params.id
+    ) {
+      return;
+    }
+
+    this.loadTrail();
+  }
+
+  loadTrail = () =>
+    fetch(
+      `http://192.168.1.21:3001/trails/${this.props.navigation.state.params.id}`
+    ) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailDetails: data })); // avec ces données modifie le state de trailList
-  }
 
   render() {
     const { navigation } = this.props;
@@ -52,7 +69,7 @@ class TrailDetails extends Component {
             borderTopWidth: 0
           }}
           showsVerticalScrollIndicator={false}
-        // contentContainerStyle={StyleSheet.absoluteFillObject}
+          // contentContainerStyle={StyleSheet.absoluteFillObject}
         >
           <Button
             icon={<Icon name="arrow-back" color="black" />}
@@ -162,7 +179,7 @@ class TrailDetails extends Component {
             }}
           >
             <View style={{ flex: 1 }}>
-              <Mapps />
+              <SwitchMapps mapName={this.state.trailDetails.mapName} />
             </View>
             {/* <Image
               source={require("../assets/Map2.png")}
@@ -188,7 +205,7 @@ class TrailDetails extends Component {
                 name="marker"
                 size={25}
                 color="#C1EA69"
-              // iconStyle={{ marginRight: 35 }}
+                // iconStyle={{ marginRight: 35 }}
               />
               <Text style={{ marginTop: "4%" }}>Départ</Text>
             </View>

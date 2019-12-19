@@ -19,7 +19,8 @@ import PNFinal from "./components/PNFinal";
 
 const MainNavigator = createStackNavigator({
   Home: {
-    screen: Sign,
+    // screen: Sign,
+    screen: ThemeList,
     navigationOptions: () => ({
       header: null
     })

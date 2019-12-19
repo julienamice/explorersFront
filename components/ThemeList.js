@@ -22,7 +22,7 @@ class ThemeList extends Component {
     // });
 
     console.log("juste avant le fetch");
-    fetch('http://localhost:3001/trails') // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
+    fetch("http://192.168.1.21:3001/trails") // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailList: data })); // avec ces données modifie le state de trailList
   }
