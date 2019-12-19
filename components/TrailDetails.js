@@ -23,7 +23,7 @@ class TrailDetails extends Component {
   };
 
   componentDidMount() {
-    fetch(`http://${ip}:3001/trails/enigma${this.props.navigation.state.params.id}`) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
+    fetch(`http://localhost:3001/trails/enigma${this.props.navigation.state.params.id}`) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailDetails: data })); // avec ces données modifie le state de trailList
   }
@@ -253,9 +253,9 @@ class TrailDetails extends Component {
               bottom: "100%"
             }}
             onPress={() => {
-              //this.go();
+              this.go();
               // console.log("en construction");
-              navigate("IntroTrail", { id: this.props.id });
+              // navigate("IntroTrail", { id: this.props.id });
             }}
           />
           {/* <Text>

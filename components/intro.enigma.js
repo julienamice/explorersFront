@@ -51,7 +51,7 @@ function IntroTrail(props) {
     }, [])
 
     getEnigmaContent = async () => {
-        fetch(`http://192.168.1.80:3001/trails/content`)
+        fetch(`http://locahost:3001/trails/content`)
             .then(res => {
                 var body = res.json(); return body
             })

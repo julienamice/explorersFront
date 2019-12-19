@@ -1,3 +1,3 @@
-var ip = '192.168.1.80'
+var ipAdress = 'localhost:3001/'
 
-export default ip
+module.exports = ipAdress
