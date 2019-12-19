@@ -253,9 +253,9 @@ class TrailDetails extends Component {
               bottom: "100%"
             }}
             onPress={() => {
-              //this.go();
+              this.go();
               // console.log("en construction");
-              navigate("IntroTrail", { id: this.props.id });
+              // navigate("IntroTrail", { id: this.props.id });
             }}
           />
           {/* <Text>

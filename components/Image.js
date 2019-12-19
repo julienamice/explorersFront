@@ -13,6 +13,8 @@ const MyImage = ({ type, ...otherProps }) => {
       return (
         <Image {...otherProps} source={require("../assets/vincennes.jpg")} />
       );
+    case "mars":
+      return <Image {...otherProps} source={require("../assets/mars.jpg")} />;
     default:
       return (
         <Image {...otherProps} source={require("../assets/aventure.png")} />

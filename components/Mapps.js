@@ -63,7 +63,7 @@ class Mapps extends Component {
           region={this.state.region}
           onLayout={this.onMapLayout}
         >
-          {this.state.isReady && (
+          {/* {this.state.isReady && (
             <Marker
               title="1"
               coordinate={{
@@ -98,7 +98,7 @@ class Mapps extends Component {
                 longitude: 2.291786
               }}
             />
-          )}
+          )} */}
           {this.state.isReady && (
             <Marker
               title="Louvre"
@@ -108,7 +108,7 @@ class Mapps extends Component {
               }}
             />
           )}
-          {this.state.isReady && (
+          {/* {this.state.isReady && (
             <Marker
               title="Pont-Neuf"
               coordinate={{
@@ -116,7 +116,7 @@ class Mapps extends Component {
                 longitude: 2.341353
               }}
             />
-          )}
+          )} */}
           {this.state.isReady && (
             <Polygon
               coordinates={[
