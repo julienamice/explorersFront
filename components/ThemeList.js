@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { ImageBackground, View, ScrollView, AsyncStorage } from "react-native";
+import { ImageBackground, View, ScrollView, AsyncStorage, StatusBar} from "react-native";
 import { Button, Text } from "react-native-elements";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import Header from "./Header";
 import TrailCard from "./TrailCard";
-import { ipAdress } from "../config";
+import ipAdress from "../config";
 // import Test from "../components/Test";
 
 class ThemeList extends Component {
@@ -22,7 +22,7 @@ class ThemeList extends Component {
     // });
 
     console.log("juste avant le fetch");
-    fetch('http://localhost:3001/trails') // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
+    fetch(`http://${ipAdress}trails/`) // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailList: data })); // avec ces données modifie le state de trailList
   }
@@ -38,6 +38,7 @@ class ThemeList extends Component {
 
     return (
       <View>
+         <StatusBar  hidden={true} />
         <ImageBackground
           source={require("../assets/BKG.png")}
           style={{ width: "100%", height: "100%", zIndex: -12 }}

@@ -21,7 +21,7 @@ import {
 import { withNavigation } from "react-navigation";
 var ipAdress = require('../config');
 
-
+console.log(ipAdress)
 class Sign extends React.Component {
 
   constructor() {
@@ -66,9 +66,10 @@ class Sign extends React.Component {
     console.log('My name : ', this.state.name)
     console.log('My email : ', this.state.email)
     console.log('--------------------------------');
-    console.log('handleSubmitSignIn ======>', this.state.email)
+    console.log('handleSubmitSignIn ======>', this.state.email);
     fetch(`http://${ipAdress}users/signin?email=${this.state.email}&password=${this.state.password}`)
       .then(function (res, err) {
+        console.log('test fetch')
         return res.json()
       })
       .then((data) => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, Image, StatusBar} from 'react-native';
 
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
@@ -97,6 +97,7 @@ function IntroTrail(props) {
 
     return (
         <View style={styles.container}>
+             <StatusBar  hidden={true} />
             <View style={{ position: "absolute", top: 16, width: '100%', left: '7%', alignItems: 'stretch' }}>
                 <TouchableOpacity onPress={() => { navigate("TrailDetails") }}>
                     <Image
@@ -109,7 +110,7 @@ function IntroTrail(props) {
             </View>
             <View top={60} style={{ width: '86%', position: 'absolute' }}>
                 <Text h1 style={styles.h1}>Introduction</Text>
-                <Text style={styles.text}>{enigmaContent.textIntro}</Text>
+                <Text style={styles.text}>Vous avez choisi de partir enquêter sur la construction de Paris, excellent choix ! Rendez vous sur l'île de la Cité pour lancer le parcours.</Text>
             </View>
             <View style={styles.card}>
                 <MapView
