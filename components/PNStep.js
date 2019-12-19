@@ -3,6 +3,7 @@ import { Button } from "react-native-elements";
 import { View, Text, Image, TextInput } from "react-native";
 import { withNavigation } from "react-navigation";
 import { ip } from "../config";
+import PNLastStep from "./PNLastStep";
 
 class MultiStep extends Component {
   state = {
@@ -17,14 +18,59 @@ class MultiStep extends Component {
       .then(data => this.setState({ steps: data }));
   }
 
+  getIntermediarySteps = () => {
+    const { steps, currentStep, answer } = this.state;
+    return (
+      <>
+        <Text>{steps[currentStep] && steps[currentStep].instruction}</Text>
+        <TextInput
+          style={{
+            backgroundColor: "#F2F2F2",
+            width: 240,
+            marginLeft: 35,
+            marginTop: 30,
+            marginBottom: 15,
+            paddingLeft: 10,
+            borderWidth: 1.5,
+            borderRadius: 5
+          }}
+          onChangeText={this.handleChange}
+          value={answer}
+          placeholder="Votre Réponse"
+        />
+        <Button
+          title="Valider"
+          titleStyle={{
+            color: "black",
+            fontSize: 14
+          }}
+          buttonStyle={{
+            backgroundColor: "#C1EA69",
+            marginLeft: "9%",
+            marginBottom: -18,
+            width: "80%",
+            height: 38,
+            position: "absolute",
+            bottom: -30
+          }}
+          onPress={() => {
+            this.handleValidate();
+          }}
+        />
+      </>
+    );
+  };
+
   handleChange = value => this.setState({ answer: value });
 
-  handleValidate = () => {
-    const { steps, currentStep, answer } = this.state;
+  handleValidate = (answer = this.state.answer) => {
+    //valeur par défaut
+    const { steps, currentStep } = this.state;
 
     if (steps.length > 0 && steps[currentStep].solution === answer) {
       // bonne réponse
       if (currentStep < steps.length - 1) {
+        //car on ne veut pas la dernière (qui est la réponse)
         // il reste des steps
         this.setState({ currentStep: currentStep + 1, answer: "" });
       } else {
@@ -50,46 +96,15 @@ class MultiStep extends Component {
       <View
         style={{ width: "90%", height: "50%", marginTop: 200, marginLeft: 18 }}
       >
-        <Text>{steps[currentStep] && steps[currentStep].instruction}</Text>
-        {/* <TextInput onChange={this.handleChange} value={answer} /> */}
-        <TextInput
-          style={{
-            backgroundColor: "#F2F2F2",
-            width: 240,
-            marginLeft: 35,
-            marginTop: 30,
-            marginBottom: 15,
-            paddingLeft: 10,
-            borderWidth: 1.5,
-            borderRadius: 5
-          }}
-          onChangeText={this.handleChange}
-          value={answer}
-          placeholder="Votre Réponse"
-        />
-        {/* <Button title="Valider" onPress={this.handleValidate} /> */}
-        <Button
-          title="Valider"
-          titleStyle={{
-            color: "black",
-            fontSize: 14
-          }}
-          buttonStyle={{
-            backgroundColor: "#C1EA69",
-            marginLeft: "9%",
-            marginBottom: -18,
-            width: "80%",
-            height: 38,
-            position: "absolute",
-            bottom: -30
-          }}
-          onPress={() => {
-            this.handleValidate();
-            // this.onPressInsc();
-            //   console.log("en construction");/*  */
-          }}
-        />
-        {/* <Text>TOTO</Text> */}
+        {steps[currentStep] && steps[currentStep].isLast ? (
+          <PNLastStep
+            steps={steps}
+            currentStep={currentStep}
+            validate={this.handleValidate}
+          />
+        ) : (
+          this.getIntermediarySteps()
+        )}
       </View>
     );
   }
