@@ -4,7 +4,8 @@ import { Button } from "react-native-elements";
 
 class PNLastStep extends React.Component {
   state = {
-    answers: []
+    answers: [],
+    correct: true
   };
 
   handleAnswer = async value => {
@@ -12,18 +13,30 @@ class PNLastStep extends React.Component {
 
     if (this.state.answers.length === this.props.steps.length - 1) {
       const answer = this.state.answers.join("");
-      this.setState({ answers: [] });
+      this.setState({ correct: false, answers: [] });
       this.props.validate(answer);
     }
   };
 
   render() {
     const { steps, currentStep } = this.props;
-    const { answers } = this.state;
+    const { answers, correct } = this.state;
     return (
       <>
         {/* on peut virer le test ici du coup */}
         <Text>{steps[currentStep] && steps[currentStep].instruction}</Text>
+        {this.state.correct ? (
+          <Text></Text>
+        ) : (
+          <Text
+            style={{
+              fontSize: 12,
+              color: "red"
+            }}
+          >
+            Mauvaise réponse, allez on essaie à nouveau !{" "}
+          </Text>
+        )}
         {steps.map(
           step =>
             !step.isLast && (
@@ -36,14 +49,14 @@ class PNLastStep extends React.Component {
                 }}
                 buttonStyle={{
                   flexDirection: "column",
-                  marginLeft: 115,
+                  marginLeft: 105,
                   marginTop: 10,
                   width: 90,
                   height: 40,
                   borderRadius: 25,
                   backgroundColor: answers.includes(step.solution)
-                    ? "blue"
-                    : "green"
+                    ? "#C1EA69"
+                    : "#D9C6BA"
                 }}
                 onPress={() =>
                   !answers.includes(step.solution) &&

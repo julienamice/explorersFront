@@ -18,21 +18,16 @@ class Mapps extends Component {
   };
 
   render() {
-    // const { navigate } = this.props.navigation;
-    // const { heightM, widthM } = Dimensions.get("window");
     return (
       <View
         style={{
           width: "90%",
           height: "80%",
-          //   position: "relative",
           backgroundColor: "white",
           borderRadius: 2,
-          //   marginTop: 50,
-          marginLeft: "5%"
+          marginLeft: "6%"
         }}
       >
-        {/* <Text>Toto</Text> */}
         <Button
           icon={<Icon name="arrow-back" color="black" />}
           buttonStyle={{
@@ -44,17 +39,13 @@ class Mapps extends Component {
             borderColor: "transparent",
             borderRadius: 5
           }}
-          // onPress=
           onPress={() => this.props.navigation.navigate("Home")}
         />
         <MapView
-          //   style={{ width: widthM, height: heightM, flex: 1 }}
           style={{ width: 250, height: 200 }}
           zoomEnabled={true}
           showsUserLocation={true}
           initialRegion={{
-            // latitude: 48.866667,
-            // longitude: 2.333333,
             latitude: 48.864824,
             longitude: 2.334595,
             latitudeDelta: 0.05,
@@ -99,7 +90,7 @@ class Mapps extends Component {
               }}
             />
           )} */}
-          {this.state.isReady && (
+          {/* {this.state.isReady && (
             <Marker
               title="Louvre"
               coordinate={{
@@ -107,16 +98,17 @@ class Mapps extends Component {
                 longitude: 2.334595
               }}
             />
-          )}
-          {/* {this.state.isReady && (
+          )} */}
+          {this.state.isReady && (
             <Marker
               title="Pont-Neuf"
+              pinColor="#C1EA69"
               coordinate={{
                 latitude: 48.858001,
                 longitude: 2.341353
               }}
             />
-          )} */}
+          )}
           {this.state.isReady && (
             <Polygon
               coordinates={[

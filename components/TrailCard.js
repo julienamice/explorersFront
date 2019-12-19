@@ -35,7 +35,7 @@ class TrailCard extends Component {
             borderWidth: 1,
             borderColor: "#DDDDDD",
             borderRadius: 8,
-            marginBottom: 20,
+            marginBottom: 15,
             marginRight: 5,
             backgroundColor: "white",
             shadowColor: "#000",

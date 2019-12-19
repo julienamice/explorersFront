@@ -58,7 +58,7 @@ class ThemeList extends Component {
               style={{
                 width: "90%",
                 height: "120%",
-                marginBottom: 25,
+                marginBottom: -5,
                 zIndex: 0
               }}
               showsVerticalScrollIndicator={false}
@@ -67,6 +67,7 @@ class ThemeList extends Component {
               <View
                 style={{
                   paddingTop: 5,
+                  marginTop: 10,
                   width: "60%",
                   height: "5%",
                   marginBottom: -15
@@ -90,11 +91,12 @@ class ThemeList extends Component {
                 <View
                   style={{
                     width: "100%",
-                    height: "7%",
+                    height: 90,
                     borderWidth: 1,
                     borderColor: "#rgb(217, 198, 186)",
                     borderRadius: 5,
                     marginBottom: 2,
+                    marginTop: -15,
                     marginRight: 5,
                     backgroundColor: "rgba(217, 198, 186, 0.6)"
                   }}
@@ -132,7 +134,7 @@ class ThemeList extends Component {
                     // fontStyle: "italic",
                     fontWeight: "bold",
                     fontSize: 25,
-                    marginTop: 15,
+                    marginTop: 25,
                     marginBottom: 10
                   }}
                 >

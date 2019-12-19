@@ -15,7 +15,7 @@ import Mapps from "./components/Mapps";
 import Sign from "./components/Sign";
 import PNIntro from "./components/PNIntro";
 import PNStep from "./components/PNStep";
-// import Test from "./components/Test";
+import PNFinal from "./components/PNFinal";
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -84,6 +84,12 @@ const MainNavigator = createStackNavigator({
   },
   PNStep: {
     screen: PNStep,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  PNFinal: {
+    screen: PNFinal,
     navigationOptions: () => ({
       header: null
     })
