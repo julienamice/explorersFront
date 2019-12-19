@@ -82,7 +82,14 @@ class TrailDetails extends Component {
             }}
           />
           {/* no panic ! btn de test pour ma logique de toggle des notions du programme si isTeacher est true */}
-          <View style={{ marginRight: 10, marginLeft: 10, marginTop: 10 }}>
+          <View
+            style={{
+              marginRight: 10,
+              marginLeft: 10,
+              marginTop: 10,
+              marginBottom: 10
+            }}
+          >
             <Button
               title="Teacher"
               titleStyle={{
@@ -90,7 +97,7 @@ class TrailDetails extends Component {
                 fontSize: 14
               }}
               buttonStyle={{
-                backgroundColor: "red",
+                backgroundColor: "#C1EA69",
                 width: 70,
                 height: 35,
                 borderRadius: 20
@@ -112,7 +119,7 @@ class TrailDetails extends Component {
                 {this.state.trailDetails.parcours}
               </Text>
               {/* {this.props.parcours} */}
-              <Text style={{ marginRight: 10, marginTop: 10, fontSize: 14 }}>
+              <Text style={{ marginRight: 10, marginBottom: 10, fontSize: 14 }}>
                 <Foundation name="marker" size={20} color="#C1EA69" />
                 <Text> </Text>
                 {this.state.trailDetails.location}
