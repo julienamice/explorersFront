@@ -1,10 +1,16 @@
 import React, { Component } from "react";
-import { ImageBackground, View, ScrollView, AsyncStorage } from "react-native";
+import {
+  ImageBackground,
+  View,
+  ScrollView,
+  AsyncStorage,
+  StatusBar
+} from "react-native";
 import { Button, Text } from "react-native-elements";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import Header from "./Header";
 import TrailCard from "./TrailCard";
-import { ipAdress } from "../config";
+import ipAdress from "../config";
 // import Test from "../components/Test";
 
 class ThemeList extends Component {
@@ -22,7 +28,7 @@ class ThemeList extends Component {
     // });
 
     console.log("juste avant le fetch");
-    fetch('http://localhost:3001/trails') // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
+    fetch(`http://${ipAdress}trails/`) // fetch sur la route / de trails //192.168.1.21 || 10.2.4.18
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailList: data })); // avec ces données modifie le state de trailList
   }
@@ -38,6 +44,7 @@ class ThemeList extends Component {
 
     return (
       <View>
+        <StatusBar hidden={true} />
         <ImageBackground
           source={require("../assets/bkg_white.png")}
           style={{ width: "100%", height: "100%", zIndex: -12 }}
@@ -58,7 +65,7 @@ class ThemeList extends Component {
               style={{
                 width: "90%",
                 height: "120%",
-                marginBottom: 25,
+                marginBottom: -5,
                 zIndex: 0
               }}
               showsVerticalScrollIndicator={false}
@@ -67,6 +74,7 @@ class ThemeList extends Component {
               <View
                 style={{
                   paddingTop: 5,
+                  marginTop: 10,
                   width: "60%",
                   height: "5%",
                   marginBottom: -15
@@ -89,11 +97,12 @@ class ThemeList extends Component {
                 <View
                   style={{
                     width: "100%",
-                    height: "7%",
+                    height: 90,
                     borderWidth: 1,
                     borderColor: "#rgb(217, 198, 186)",
                     borderRadius: 5,
                     marginBottom: 2,
+                    marginTop: -15,
                     marginRight: 5,
                     backgroundColor: "rgba(217, 198, 186, 0.6)"
                   }}
@@ -131,7 +140,7 @@ class ThemeList extends Component {
                     // fontStyle: "italic",
                     fontWeight: "bold",
                     fontSize: 25,
-                    marginTop: 20,
+                    marginTop: 25,
                     marginBottom: 10
                   }}
                 >

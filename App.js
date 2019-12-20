@@ -15,11 +15,14 @@ import Mapps from "./components/Mapps";
 import Sign from "./components/Sign";
 import PNIntro from "./components/PNIntro";
 import PNStep from "./components/PNStep";
-// import Test from "./components/Test";
+import PNFinal from "./components/PNFinal";
+
+console.disableYellowBox = true;
 
 const MainNavigator = createStackNavigator({
   Home: {
-    screen: Sign,
+    // screen: Sign,
+    screen: ThemeList,
     navigationOptions: () => ({
       header: null
     })
@@ -84,6 +87,12 @@ const MainNavigator = createStackNavigator({
   },
   PNStep: {
     screen: PNStep,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  PNFinal: {
+    screen: PNFinal,
     navigationOptions: () => ({
       header: null
     })

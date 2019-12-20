@@ -3,7 +3,7 @@ import { View, Dimensions } from "react-native";
 import MapView, { Polygon, Marker } from "react-native-maps";
 import { Button, Icon } from "react-native-elements";
 
-class Mapps extends Component {
+class MappsChateau extends Component {
   state = {
     currentLatitude: 0,
     currentLongitude: 0,
@@ -46,10 +46,10 @@ class Mapps extends Component {
           zoomEnabled={true}
           showsUserLocation={true}
           initialRegion={{
-            latitude: 48.864824,
-            longitude: 2.334595,
-            latitudeDelta: 0.05,
-            longitudeDelta: 0.05
+            latitude: 48.855428,
+            longitude: 2.366628,
+            latitudeDelta: 0.09,
+            longitudeDelta: 0.09
           }}
           region={this.state.region}
           onLayout={this.onMapLayout}
@@ -101,11 +101,11 @@ class Mapps extends Component {
           )} */}
           {this.state.isReady && (
             <Marker
-              title="Pont-Neuf"
+              title="Ternes"
               pinColor="#C1EA69"
               coordinate={{
-                latitude: 48.858001,
-                longitude: 2.341353
+                latitude: 48.880881,
+                longitude: 2.293268
               }}
             />
           )}
@@ -113,10 +113,10 @@ class Mapps extends Component {
             <Polygon
               coordinates={[
                 { latitude: 48.881304, longitude: 2.346062 },
-                { latitude: 48.862505, longitude: 2.352124 },
-                { latitude: 48.858001, longitude: 2.341353 },
-                { latitude: 48.852153, longitude: 2.291786 },
-                { latitude: 48.875323, longitude: 2.316815 }
+                { latitude: 48.842714, longitude: 2.435479 }, //vincennes
+                { latitude: 48.835745, longitude: 2.350913 }, //reine blanche
+                // { latitude: 48.402331, longitude: 2.699507 }, //fontainebleau
+                { latitude: 48.880881, longitude: 2.293268 } //ternes
               ]}
               strokeColor="rgb(217, 198, 186)"
               // au cas où strokeColor, n'est pas supporté
@@ -137,4 +137,4 @@ class Mapps extends Component {
   }
 }
 
-export default Mapps;
+export default MappsChateau;

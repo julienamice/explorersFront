@@ -97,7 +97,8 @@ class Compte extends Component {
               marginTop: "6%"
             }}
           >
-            {this.state.userInfos.name} {this.state.userInfos.lastname}
+            {/* {this.state.userInfos.name} {this.state.userInfos.lastname} */}
+            Amélie C.
             <Text> </Text>
             <Ionicons name="md-school" size={20} />
           </Text>
