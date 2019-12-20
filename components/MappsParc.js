@@ -21,14 +21,14 @@ class MappsParc extends Component {
     return (
       <View
         style={{
-          width: "90%",
+          width: "100%",
           height: "80%",
           backgroundColor: "white",
-          borderRadius: 2,
-          marginLeft: "6%"
+          borderRadius: 2
+          // marginLeft: "6%"
         }}
       >
-        <Button
+        {/* <Button
           icon={<Icon name="arrow-back" color="black" />}
           buttonStyle={{
             backgroundColor: "transparent",
@@ -40,9 +40,9 @@ class MappsParc extends Component {
             borderRadius: 5
           }}
           onPress={() => this.props.navigation.navigate("Home")}
-        />
+        /> */}
         <MapView
-          style={{ width: 250, height: 200 }}
+          style={{ width: 306, height: 200, marginBottom: 12 }}
           zoomEnabled={true}
           showsUserLocation={true}
           initialRegion={{

@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 
-import {
-  View,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  StatusBar
-} from "react-native";
+import { View, Image, ScrollView, StatusBar } from "react-native";
 import { Button, Text, Icon } from "react-native-elements";
 import { Foundation } from "@expo/vector-icons";
-import Mapps from "./Mapps";
-import ip from "../config";
 import MyImage from "./Image";
 import PNIntro from "./PNIntro";
 import SwitchMapps from "./SwitchMapps";
@@ -47,7 +39,7 @@ class TrailDetails extends Component {
 
   loadTrail = () =>
     fetch(
-      `http://192.168.1.21:3001/trails/${this.props.navigation.state.params.id}`
+      `http://10.2.4.18:3001/trails/${this.props.navigation.state.params.id}`
     ) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
       // fetch(`http://${ip}trails/enigma${this.props.navigation.state.params.id}`)
       .then(res => res.json()) // récupère les données de trailList
@@ -65,7 +57,7 @@ class TrailDetails extends Component {
           style={{
             width: "100%",
             // height: "96.2%",
-            marginTop: 27,
+            // marginTop: 27,
             marginBottom: 50,
             // marginLeft: 200,
             borderWidth: 1,
@@ -108,8 +100,9 @@ class TrailDetails extends Component {
           {/* no panic ! btn de test pour ma logique de toggle des notions du programme si isTeacher est true */}
           <View
             style={{
-              marginRight: 10,
-              marginLeft: 10,
+              width: "86%",
+              marginRight: 26,
+              marginLeft: 26,
               marginTop: 10,
               marginBottom: 10
             }}
@@ -154,9 +147,136 @@ class TrailDetails extends Component {
             </Text>
             <Text style={{ height: 60 }}>{this.state.trailDetails.desc}</Text>
             {this.state.displayTeacher && (
-              <Text style={{ fontSize: 18, fontWeight: "bold", height: 150 }}>
-                {this.state.trailDetails.details}
-              </Text>
+              <View>
+                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                  {this.state.trailDetails.details}
+                </Text>
+                <Text style={{ fontSize: 15, textDecorationLine: "underline" }}>
+                  {this.state.trailDetails.matiere}
+                </Text>
+                <Text style={{ fontSize: 15 }}>
+                  {this.state.trailDetails.notions}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    textDecorationLine: "underline",
+                    // marginLeft: 1,
+                    marginTop: 12
+                  }}
+                >
+                  Mais aussi :
+                </Text>
+                <View
+                  style={{
+                    width: 200,
+                    flexDirection: "row",
+                    justifyContent: "space-between"
+                  }}
+                >
+                  {this.state.trailDetails.tag1 ? (
+                    <Button
+                      title={this.state.trailDetails.tag1}
+                      titleStyle={{
+                        color: "black",
+                        fontSize: 14
+                      }}
+                      buttonStyle={{
+                        backgroundColor: "#D9C6BA",
+                        marginTop: 8,
+                        width: 40,
+                        height: 28,
+                        borderRadius: 5
+                      }}
+                    />
+                  ) : null}
+                  {this.state.trailDetails.tag2 ? (
+                    <Button
+                      title={this.state.trailDetails.tag2}
+                      titleStyle={{
+                        color: "black",
+                        fontSize: 14
+                      }}
+                      buttonStyle={{
+                        backgroundColor: "#D9C6BA",
+                        marginTop: 8,
+                        width: 80,
+                        height: 28,
+                        borderRadius: 5
+                      }}
+                    />
+                  ) : null}
+                  {this.state.trailDetails.tag3 ? (
+                    <Button
+                      title={this.state.trailDetails.tag3}
+                      titleStyle={{
+                        color: "black",
+                        fontSize: 14
+                      }}
+                      buttonStyle={{
+                        backgroundColor: "#D9C6BA",
+                        marginTop: 8,
+                        width: 60,
+                        height: 28,
+                        borderRadius: 5
+                      }}
+                    />
+                  ) : null}
+                  {this.state.trailDetails.tag4 ? (
+                    <Button
+                      title={this.state.trailDetails.tag4}
+                      titleStyle={{
+                        color: "black",
+                        fontSize: 14
+                      }}
+                      buttonStyle={{
+                        backgroundColor: "#D9C6BA",
+                        marginTop: 8,
+                        width: 90,
+                        height: 28,
+                        borderRadius: 5
+                      }}
+                    />
+                  ) : null}
+                  {this.state.trailDetails.tag5 ? (
+                    <Button
+                      title={this.state.trailDetails.tag5}
+                      titleStyle={{
+                        color: "black",
+                        fontSize: 14
+                      }}
+                      buttonStyle={{
+                        backgroundColor: "#D9C6BA",
+                        marginTop: 8,
+                        marginLeft: 15,
+                        width: 140,
+                        height: 28,
+                        borderRadius: 5
+                      }}
+                    />
+                  ) : null}
+                  {this.state.trailDetails.tag6 ? (
+                    <Button
+                      title={this.state.trailDetails.tag6}
+                      titleStyle={{
+                        color: "black",
+                        fontSize: 14
+                      }}
+                      buttonStyle={{
+                        backgroundColor: "#D9C6BA",
+                        marginTop: 8,
+                        marginLeft: 15,
+                        width: 150,
+                        height: 28,
+                        borderRadius: 5
+                      }}
+                    />
+                  ) : null}
+                </View>
+                {/* <Text style={{ fontSize: 15 }}>
+                  {this.state.trailDetails.tag}
+                </Text> */}
+              </View>
             )}
             {/* <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
             <Text style={{ height: 100 }}>{this.state.trailDetails.desc}</Text>
@@ -171,9 +291,9 @@ class TrailDetails extends Component {
               borderRadius: 8,
               marginBottom: 20,
               // marginRight: "1%",
-              marginLeft: "10%",
+              marginLeft: "7%",
               marginTop: 15,
-              width: "80%",
+              width: "86%",
               justifyContent: "center",
               backgroundColor: "white",
               shadowColor: "#000",
@@ -205,17 +325,12 @@ class TrailDetails extends Component {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 // marginBottom: 15,
-                marginRight: "68%",
-                marginLeft: "5%",
+                marginRight: 204,
+                marginLeft: 25,
                 marginTop: "1%"
               }}
             >
-              <Foundation
-                name="marker"
-                size={25}
-                color="#C1EA69"
-                // iconStyle={{ marginRight: 35 }}
-              />
+              <Foundation name="marker" size={25} color="#C1EA69" />
               <Text style={{ marginTop: "4%" }}>Départ</Text>
             </View>
 
@@ -229,7 +344,7 @@ class TrailDetails extends Component {
                   // borderRadius: 20,
                   // borderColor: "black",
                   // borderWidth: 1
-                  marginLeft: 5
+                  marginLeft: 15
                   // marginTop: "5%"
                 }}
               />
@@ -277,9 +392,9 @@ class TrailDetails extends Component {
             }}
             buttonStyle={{
               backgroundColor: "#C1EA69",
-              marginLeft: "9%",
+              marginLeft: "7%",
               marginBottom: "1.5%",
-              width: "80%",
+              width: "85%",
               height: 38,
               // borderRadius: 20,
               position: "absolute",
