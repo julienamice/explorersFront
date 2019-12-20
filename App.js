@@ -17,6 +17,8 @@ import PNIntro from "./components/PNIntro";
 import PNStep from "./components/PNStep";
 import PNFinal from "./components/PNFinal";
 
+console.disableYellowBox = true;
+
 const MainNavigator = createStackNavigator({
   Home: {
     screen: Sign,

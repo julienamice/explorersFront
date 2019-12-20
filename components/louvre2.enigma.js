@@ -6,7 +6,8 @@ import {
   Button,
   TouchableOpacity,
   Image,
-  StatusBar
+  StatusBar,
+  Modal
 } from "react-native";
 import { diff } from "deep-object-diff";
 
