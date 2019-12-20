@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Icon } from "react-native-elements";
 import { View, Text, TextInput } from "react-native";
 import { withNavigation } from "react-navigation";
-import { ip } from "../config";
+import ip from "../config";
 import PNLastStep from "./PNLastStep";
 
 class MultiStep extends Component {
@@ -14,7 +14,7 @@ class MultiStep extends Component {
   };
 
   componentDidMount() {
-    fetch(`http://${ip}:3001/enigmas/PN`) // fetch sur la route / de enigmas/PN
+    fetch(`http://${ip}enigmas/PN`) // fetch sur la route / de enigmas/PN
       .then(res => res.json()) // récupère les données de enigme
       .then(data => this.setState({ steps: data }));
   }
@@ -93,7 +93,7 @@ class MultiStep extends Component {
       } else {
         // toutes les steps ont été faites
         this.setState({ currentStep: 0, answer: "", steps: [] });
-        this.props.navigation.navigate("PNFinal");
+        this.props.navigation.navigate("EnigmaEnd");
       }
     } else {
       //mauvaise réponse

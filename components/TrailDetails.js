@@ -7,6 +7,7 @@ import MyImage from "./Image";
 import PNIntro from "./PNIntro";
 import SwitchMapps from "./SwitchMapps";
 import IntroTrail from "./intro.enigma";
+import ipAdress from "../config";
 
 class TrailDetails extends Component {
   state = {
@@ -39,7 +40,7 @@ class TrailDetails extends Component {
 
   loadTrail = () =>
     fetch(
-      `http://10.2.4.20:3001/trails/enigma${this.props.navigation.state.params.id}`
+      `http://${ipAdress}trails/enigma${this.props.navigation.state.params.id}`
     ) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
       // fetch(`http://${ip}trails/enigma${this.props.navigation.state.params.id}`)
       .then(res => res.json()) // récupère les données de trailList
@@ -418,7 +419,6 @@ class TrailDetails extends Component {
           </Text> */}
         </View>
         {/* <TouchableOpacity
-
           style={{
             alignItems: 'center',
             backgroundColor: '#C1EA69',

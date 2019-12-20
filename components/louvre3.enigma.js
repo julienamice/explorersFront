@@ -74,7 +74,7 @@ class Louvre3 extends Component {
             count: countCheck
         })
         if (countCheck === 4) {
-            navigate("EnigmaEnd", {})
+            navigate("PNIntro", {})
         }
         
     }

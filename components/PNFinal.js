@@ -110,7 +110,7 @@ class PNFinal extends Component {
               marginTop: 50
             }}
             onPress={() => {
-              this.props.navigation.navigate("ThemeList");
+              this.props.navigation.navigate("EnigmaEnd");
             }}
           />
         </View>
