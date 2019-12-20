@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 
-import { View, Image, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  StatusBar
+} from "react-native";
 import { Button, Text, Icon } from "react-native-elements";
 import { Foundation } from "@expo/vector-icons";
 import Mapps from "./Mapps";
-import { ip } from "../config";
+import ip from "../config";
 import MyImage from "./Image";
 import PNIntro from "./PNIntro";
 import SwitchMapps from "./SwitchMapps";
+import IntroTrail from "./intro.enigma";
 
 class TrailDetails extends Component {
   state = {
@@ -42,6 +49,7 @@ class TrailDetails extends Component {
     fetch(
       `http://192.168.1.21:3001/trails/${this.props.navigation.state.params.id}`
     ) // fetch sur la route / de trails/id //192.168.1.21 || 10.2.4.18
+      // fetch(`http://${ip}trails/enigma${this.props.navigation.state.params.id}`)
       .then(res => res.json()) // récupère les données de trailList
       .then(data => this.setState({ trailDetails: data })); // avec ces données modifie le state de trailList
 
@@ -51,6 +59,7 @@ class TrailDetails extends Component {
     // console.log(navigation.state.params.id);
     return (
       <View>
+        <StatusBar hidden={true} />
         {/*  gestion de l'affichage global */}
         <ScrollView
           style={{

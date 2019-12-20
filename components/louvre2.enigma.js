@@ -5,7 +5,8 @@ import {
   View,
   Button,
   TouchableOpacity,
-  Image
+  Image,
+  StatusBar
 } from "react-native";
 import { diff } from "deep-object-diff";
 
@@ -65,15 +66,16 @@ function Louvre2(props) {
 
   return (
     <View style={styles.container}>
+    <StatusBar  hidden={true} />
       <View top={60} style={{ width: "86%", flex: 3 }}>
         <Text h1 style={styles.h1}>
-          Retrouvez les bons fragments !
+          Retrouvez les bons plans de construction !
         </Text>
-        <Text style={styles.text}>Content </Text>
+        <Text style={styles.text}>Le palais du Louvre s'est construit au travers des siècles. Vous devez trouver les extensions qui correspondent à la Renaissance, observez les bâtiments pour trouver le symbole très présent qui vous aidera à bien choisir. </Text>
       </View>
 
       <View
-        style={{ flex: 8, width: "86%", paddingTop: 20, paddingBottom: 60 }}
+        style={{ flex: 8, width: "86%", paddingTop: 130, paddingBottom: 60 }}
       >
         <View
           style={{

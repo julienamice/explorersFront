@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, Image, StatusBar } from 'react-native';
 
 
 function Louvre1(props) {
@@ -14,7 +14,8 @@ function Louvre1(props) {
 
     return (
         <View style={styles.container}>
-            <View style={{ position: "absolute", top: 16, width: '100%', left: '7%', alignItems: 'stretch' }}>
+             <StatusBar  hidden={true} />
+            <View style={{ position: 'absolute', top: 16, width: '86%', left: '7%', alignItems: 'stretch' }}>
                 <TouchableOpacity onPress={() => { navigate("TrailDetails") }}>
                     <Image
                         style={{ width: 36 }}
@@ -28,8 +29,6 @@ function Louvre1(props) {
                         {
                             alignSelf: "flex-end",
                             alignItems: 'center',
-
-                            right: '7%',
                             backgroundColor: '#C1EA69',
                             width: 60,
                             height: 40,
@@ -39,10 +38,12 @@ function Louvre1(props) {
                 >
                     <Text style={{ lineHeight: 40 }}>Indice</Text>
                 </TouchableOpacity>
+
             </View>
             <View top={60} style={{ width: '86%', position: 'absolute' }}>
                 <Text h1 style={styles.h1}>Votre première mission</Text>
-                <Text style={styles.text}>Les consignes de la première mission</Text>
+                <Text style={styles.text}>Les travaux du palais traîne... rendez-vous au Louvre pour jeter un oeil à cette histoire et faire avancer les travaux</Text>
+
             </View>
             <TouchableOpacity style={styles.buttonOK} onPress={() => { navigate("Louvre2", { enigmaContent: navigation.enigmaContent }) }}>
                 <Text style={styles.textCTA}>Je suis prêt !</Text>

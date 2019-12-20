@@ -5,7 +5,8 @@ import {
   View,
   Button,
   TouchableOpacity,
-  Image
+  Image,
+  StatusBar
 } from "react-native";
 
 import * as Location from "expo-location";
@@ -119,6 +120,7 @@ function IntroTrail(props) {
 
   return (
     <View style={styles.container}>
+      <StatusBar hidden={true} />
       <View
         style={{
           position: "absolute",
@@ -143,7 +145,11 @@ function IntroTrail(props) {
         <Text h1 style={styles.h1}>
           Introduction
         </Text>
-        <Text style={styles.text}>{enigmaContent.textIntro}</Text>
+        <Text style={styles.text}>
+          Vous avez choisi de partir enquêter sur la construction de Paris,
+          excellent choix ! Rendez vous sur l'île de la Cité pour lancer le
+          parcours.
+        </Text>
       </View>
       <View style={styles.card}>
         <MapView
@@ -170,7 +176,6 @@ function IntroTrail(props) {
           <Text>Alo</Text>
         </View>
       </View>
-
       <TouchableOpacity
         style={
           nextStep.isNext === true ? styles.buttonOK : styles.buttonDisabled
@@ -189,7 +194,6 @@ function IntroTrail(props) {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -246,5 +250,4 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
-
 export default IntroTrail;

@@ -18,6 +18,7 @@ import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { withNavigation } from "react-navigation";
 var ipAdress = require("../config");
 
+console.log(ipAdress);
 class Sign extends React.Component {
   constructor() {
     super();
@@ -65,6 +66,7 @@ class Sign extends React.Component {
       `http://${ipAdress}users/signin?email=${this.state.email}&password=${this.state.password}`
     )
       .then(function(res, err) {
+        console.log("test fetch");
         return res.json();
       })
       .then(data => {
