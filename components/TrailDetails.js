@@ -11,7 +11,7 @@ import IntroTrail from "./intro.enigma";
 class TrailDetails extends Component {
   state = {
     trailDetails: {},
-    displayTeacher: false
+    displayTeacher: true
   };
 
   onPress = () => {
@@ -107,7 +107,7 @@ class TrailDetails extends Component {
               marginBottom: 10
             }}
           >
-            <Button
+            {/* <Button
               title="Teacher"
               titleStyle={{
                 color: "black",
@@ -122,11 +122,11 @@ class TrailDetails extends Component {
               onPress={() => {
                 this.onPress();
               }}
-            />
+            /> */}
             {/* gestion de l'affichage des données récupérées de trailList */}
             <View
               style={{
-                width: "100%",
+                width: "86%",
                 flexDirection: "row",
                 justifyContent: "space-between",
                 marginTop: 10

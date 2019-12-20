@@ -23,21 +23,7 @@ function Louvre1(props) {
                     >
                     </Image>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={() => { console.log('Donne un indice stp') }}
-                    style={
-                        {
-                            alignSelf: "flex-end",
-                            alignItems: 'center',
-                            backgroundColor: '#C1EA69',
-                            width: 60,
-                            height: 40,
-                            borderRadius: 4,
-                            borderColor: 'transparent',
-                        }}
-                >
-                    <Text style={{ lineHeight: 40 }}>Indice</Text>
-                </TouchableOpacity>
+                
 
             </View>
             <View top={60} style={{ width: '86%', position: 'absolute' }}>

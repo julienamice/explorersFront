@@ -20,7 +20,10 @@ function IntroTrail(props) {
     latitudeDelta: 0.5,
     longitudeDelta: 0.5
   });
-  const [enigmaPos, setEnigma] = useState({ long: 2.2727728, lat: 48.8250032 });
+  const [enigmaPos, setEnigma] = useState({
+    long: 2.3502269034290135,
+    lat: 48.86483976349885
+  });
   const [distToEnigma, setDistToEngima] = useState(null);
   const [nextStep, setNextStep] = useState({
     isNext: false,
