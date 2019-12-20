@@ -42,7 +42,7 @@ class MappsParc extends Component {
           onPress={() => this.props.navigation.navigate("Home")}
         /> */}
         <MapView
-          style={{ width: 306, height: 200, marginBottom: 12 }}
+          style={{ width: '100%', height: 200, marginBottom: 12 }}
           zoomEnabled={true}
           showsUserLocation={true}
           initialRegion={{

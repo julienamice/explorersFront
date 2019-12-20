@@ -326,7 +326,7 @@ class TrailDetails extends Component {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 // marginBottom: 15,
-                marginRight: 204,
+                marginRight: '70%',
                 marginLeft: 25,
                 marginTop: "1%"
               }}
