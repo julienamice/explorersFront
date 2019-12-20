@@ -1,5 +1,5 @@
-import React from 'react';
-import { Component } from 'react';
+import React from "react";
+import { Component } from "react";
 import {
   Modal,
   ScrollView,
@@ -19,35 +19,35 @@ import {
   Ionicons,
   FontAwesome
 } from '@expo/vector-icons';
+
 import { withNavigation } from "react-navigation";
-var ipAdress = require('../config');
+var ipAdress = require("../config");
 
+console.log(ipAdress);
 class Sign extends React.Component {
-
   constructor() {
-    super()
-    this.handleSubmitSignIn = this.handleSubmitSignIn.bind(this)
-    this.handleSubmitSignUp = this.handleSubmitSignUp.bind(this)
-    this.handleSubmitGlobal = this.handleSubmitGlobal.bind(this)
+    super();
+    this.handleSubmitSignIn = this.handleSubmitSignIn.bind(this);
+    this.handleSubmitSignUp = this.handleSubmitSignUp.bind(this);
+    this.handleSubmitGlobal = this.handleSubmitGlobal.bind(this);
     this.state = {
-      name: '',
-      email: '',
-      password: '',
-      photo: '',
+      name: "",
+      email: "",
+      password: "",
+      photo: "",
       isTeacher: false,
       modalVisible: true,
       currentTab: 1,
       isReady: false,
       login: false
-    }
-
+    };
   }
-  toggleSwitch = (value) => {
-    this.setState({ switchValue: value })
+  toggleSwitch = value => {
+    this.setState({ switchValue: value });
   };
-  onTabClick = (currentTab) => {
+  onTabClick = currentTab => {
     this.setState({
-      currentTab: currentTab,
+      currentTab: currentTab
     });
   };
   setModalVisible = visible => {
@@ -60,66 +60,89 @@ class Sign extends React.Component {
       email: this.state.email,
       password: this.state.password,
       photo: this.state.photo,
-      isTeacher: this.state.isTeacher,
+      isTeacher: this.state.isTeacher
     });
-    console.log('--------------------------------')
-    console.log('My name : ', this.state.name)
-    console.log('My email : ', this.state.email)
-    console.log('--------------------------------');
-    console.log('handleSubmitSignIn ======>', this.state.email);
-    fetch(`http://${ipAdress}users/signin?email=${this.state.email}&password=${this.state.password}`)
-      .then(function (res, err) {
-        console.log('test fetch')
-        return res.json()
+    console.log("--------------------------------");
+    console.log("My name : ", this.state.name);
+    console.log("My email : ", this.state.email);
+    console.log("--------------------------------");
+    console.log("handleSubmitSignIn ======>", this.state.email);
+    fetch(
+      `http://${ipAdress}users/signin?email=${this.state.email}&password=${this.state.password}`
+    )
+      .then(function(res, err) {
+        console.log("test fetch");
+        return res.json();
       })
-      .then((data) => {
-        console.log('fetchsignin ======>', data.result)
-        data.result ? this.setState({ login: true }) : this.setState({ login: false })
-        data.result ? this.props.navigation.navigate('ThemeList') : console.log('Dommage')
-        data.result ? this.setState({ modalVisible: false }) : null
-        this.props.setID(data.userSave._id)
-        var userLogin = { email: data.userSave.email, password: data.userSave.password };
-        var userStorage = JSON.stringify(userLogin)
-        AsyncStorage.setItem('userLogin', userStorage)
+      .then(data => {
+        console.log("fetchsignin ======>", data.result);
+        data.result
+          ? this.setState({ login: true })
+          : this.setState({ login: false });
+        data.result
+          ? this.props.navigation.navigate("ThemeList")
+          : console.log("Dommage");
+        data.result ? this.setState({ modalVisible: false }) : null;
+        this.props.setID(data.userSave._id);
+        var userLogin = {
+          email: data.userSave.email,
+          password: data.userSave.password
+        };
+        var userStorage = JSON.stringify(userLogin);
+        AsyncStorage.setItem("userLogin", userStorage);
       })
-      .catch((error) => { console.log(error) })
-  };
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   handleSubmitSignUp() {
-
     var signupData = JSON.stringify({
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
       photo: this.state.photo,
-      isTeacher: this.state.isTeacher,
+      isTeacher: this.state.isTeacher
     });
-    console.log('--------------------------------')
-    console.log('My name : ', this.state.name)
-    console.log('My email : ', this.state.email)
-    console.log('--------------------------------');
-    console.log('handleSubmitSignUp ======>', this.state.email)
-    fetch(`http://${ipAdress}users/signup?email=${this.state.email}&password=${this.state.password}`)
-      .then(function (res, err) {
-        return res.json()
+    console.log("--------------------------------");
+    console.log("My name : ", this.state.name);
+    console.log("My email : ", this.state.email);
+    console.log("--------------------------------");
+    console.log("handleSubmitSignUp ======>", this.state.email);
+    fetch(
+      `http://${ipAdress}users/signup?email=${this.state.email}&password=${this.state.password}`
+    )
+      .then(function(res, err) {
+        return console.log("res", res) || res.json();
       })
-      .then((data) => {
-        console.log('fetchsignup ======>', data)
+      .then(data => {
+        console.log("fetchsignup ======>", data);
 
-        data.result ? this.setState({ login: true }) : this.setState({ login: false })
-        data.result ? this.props.navigation.navigate('ThemeList') : console.log('Dommage')
-        data.result ? this.setState({ modalVisible: false }) : null
-        this.props.setID(data.userSave._id)
-        var userLogin = { email: data.userSave.email, password: data.userSave.password };
-        var userStorage = JSON.stringify(userLogin)
-        AsyncStorage.setItem('userLogin', userStorage)
+        data.result
+          ? this.setState({ login: true })
+          : this.setState({ login: false });
+        data.result
+          ? this.props.navigation.navigate("ThemeList")
+          : console.log("Dommage");
+        data.result ? this.setState({ modalVisible: false }) : null;
+        this.props.setID(data.userSave._id);
+        var userLogin = {
+          email: data.userSave.email,
+          password: data.userSave.password
+        };
+        var userStorage = JSON.stringify(userLogin);
+        AsyncStorage.setItem("userLogin", userStorage);
       })
 
-      .catch((error) => { console.log(error) })
-  };
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   handleSubmitGlobal() {
-    this.state.currentTab === 1 ? this.handleSubmitSignIn() : this.handleSubmitSignUp()
+    this.state.currentTab === 1
+      ? this.handleSubmitSignIn()
+      : this.handleSubmitSignUp();
   }
   // componentDidMount() {
 
@@ -134,7 +157,6 @@ class Sign extends React.Component {
   // }
 
   render() {
-
     const { navigate } = this.props.navigation;
 
     return (
@@ -144,24 +166,21 @@ class Sign extends React.Component {
         <View
           style={styles.globalView}
         >
+
           <Modal
             animationType="slide"
             transparent={true}
             visible={this.state.modalVisible}
             onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
+              Alert.alert("Modal has been closed.");
             }}
           >
-            <View
-              style={styles.modal}
-            >
+            <View style={styles.modal}>
               <View style={styles.tbar}>
-                <View
-                  style={styles.viewImage}
-                >
+                <View style={styles.viewImage}>
                   <Image
                     style={styles.image}
-                    source={require('../assets/little_logo.png')}
+                    source={require("../assets/little_logo.png")}
                   />
                 </View>
               </View>
@@ -173,63 +192,67 @@ class Sign extends React.Component {
                     }}
                     style={[
                       styles.tabTextStyle1,
-                      this.state.currentTab === 1 ? styles.tabUnderline : null,
-                    ]}>
+                      this.state.currentTab === 1 ? styles.tabUnderline : null
+                    ]}
+                  >
                     Connexion
-                                    </Text>
+                  </Text>
                   <Text
                     onPress={() => {
                       this.onTabClick(2);
                     }}
                     style={[
                       styles.tabTextStyle2,
-                      this.state.currentTab === 2 ? styles.tabUnderline : null,
-                    ]}>
+                      this.state.currentTab === 2 ? styles.tabUnderline : null
+                    ]}
+                  >
                     Inscription
-                                    </Text>
+                  </Text>
                 </View>
                 <View>
-                  <FontAwesome name="circle" size={10} color="#C1EA69" style={this.state.currentTab === 1 ? styles.dotConnexion : styles.dotInscription} />
+                  <FontAwesome
+                    name="circle"
+                    size={10}
+                    color="#C1EA69"
+                    style={
+                      this.state.currentTab === 1
+                        ? styles.dotConnexion
+                        : styles.dotInscription
+                    }
+                  />
                 </View>
               </View>
               {this.state.currentTab === 1 && (
-
-                <ScrollView
-                  style={styles.scrollview}
-                >
+                <ScrollView style={styles.scrollview}>
                   <TextInput
                     style={styles.textInputTop}
                     placeholder="Adresse mail"
                     placeholderTextColor="black"
                     autoCapitalize="none"
-                    onChangeText={(email) => this.setState({ email })}
+                    onChangeText={email => this.setState({ email })}
                     value={this.state.email}
                   />
                   <TextInput
                     style={styles.textInput}
+                    secureTextEntry={true}
                     underlineColorAndroid="transparent"
                     placeholder="Mot de passe"
                     placeholderTextColor="black"
                     autoCapitalize="none"
-                    onChangeText={(password) => this.setState({ password })}
+                    onChangeText={password => this.setState({ password })}
                     value={this.state.password}
                   />
                 </ScrollView>
-
-
               )}
               {this.state.currentTab === 2 && (
-
-                <ScrollView
-                  style={styles.scrollview}
-                >
+                <ScrollView style={styles.scrollview}>
                   <TextInput
                     style={styles.textInputTop}
                     underlineColorAndroid="transparent"
                     placeholder="Nom d'utilisateur"
                     placeholderTextColor="black"
                     autoCapitalize="none"
-                    onChangeText={(name) => this.setState({ name })}
+                    onChangeText={name => this.setState({ name })}
                     value={this.state.name}
                   />
                   <TextInput
@@ -238,41 +261,40 @@ class Sign extends React.Component {
                     placeholder="Adresse mail"
                     placeholderTextColor="black"
                     autoCapitalize="none"
-                    onChangeText={(email) => this.setState({ email })}
+                    onChangeText={email => this.setState({ email })}
                     value={this.state.email}
                   />
                   <TextInput
                     style={styles.textInput}
+                    secureTextEntry={true}
                     underlineColorAndroid="transparent"
                     placeholder="Mot de passe"
                     placeholderTextColor="black"
                     autoCapitalize="none"
-                    onChangeText={(password) => this.setState({ password })}
+                    onChangeText={password => this.setState({ password })}
                     value={this.state.password}
                   />
-                  <View
-                    style={styles.switchteachers}>
-                    <View
-                      style={styles.underswitchteacher}>
-                      <Text >Je suis enseignant.e </Text>
+                  <View style={styles.switchteachers}>
+                    <View style={styles.underswitchteacher}>
+                      <Text>Je suis enseignant.e </Text>
                     </View>
-                    <View
-                      style={styles.switchteachers}>
+                    <View style={styles.switchteachers}>
                       <Switch
                         style={{
-                          transform: [{ scaleX: .8 }, { scaleY: .8 }]
+                          transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }]
                         }}
                         onValueChange={this.toggleSwitch}
-                        value={this.state.switchValue} /></View>
+                        value={this.state.switchValue}
+                      />
+                    </View>
                   </View>
                 </ScrollView>
-
-
               )}
               <View style={styles.bbar}>
-
-
-                <TouchableOpacity style={styles.buttonOK} onPress={this.handleSubmitGlobal}>
+                <TouchableOpacity
+                  style={styles.buttonOK}
+                  onPress={this.handleSubmitGlobal}
+                >
                   <Text>PARS EXPLORER !</Text>
                 </TouchableOpacity>
                 {/* <Button
@@ -284,9 +306,7 @@ class Sign extends React.Component {
             </View>
           </Modal>
         </View>
-
-      </ImageBackground >
-
+      </ImageBackground>
     );
   }
 }
@@ -296,47 +316,46 @@ class Sign extends React.Component {
 //===========================================
 
 const Colors = {
-  Grey: '#DCDCDC',
-  White: '#FFFFFF',
-  Green: '#C1EA69',
-  Black: '#000000',
+  Grey: "#DCDCDC",
+  White: "#FFFFFF",
+  Green: "#C1EA69",
+  Black: "#000000"
 };
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1
   },
 
   buttonOK: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#C1EA69',
-    width: '86%',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#C1EA69",
+    width: "86%",
     height: 40,
     borderRadius: 4,
-    borderColor: 'transparent',
-    color: 'white'
+    borderColor: "transparent",
+    color: "white"
   },
 
   globalView: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
   },
 
   modal: {
     backgroundColor: Colors.White,
-    marginLeft: '10%',
-    marginRight: '10%',
-    width: '80%',
+    marginLeft: "10%",
+    marginRight: "10%",
+    width: "80%",
     marginTop: 85,
     marginBottom: 80,
     borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
     flex: 1,
     shadowColor: "#000",
     shadowOffset: {
@@ -344,30 +363,30 @@ const styles = StyleSheet.create({
       height: 2
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowRadius: 3.84
   },
 
   viewImage: {
-    flexDirection: 'column',
+    flexDirection: "column",
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     paddingRight: 30,
     paddingLeft: 30,
-    paddingTop: 40,
+    paddingTop: 40
   },
 
   image: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    bottom: '25%'
+    flexDirection: "column",
+    justifyContent: "center",
+    bottom: "25%"
   },
 
   scrollview: {
     width: "100%",
-    flexDirection: 'column',
-    paddingLeft: '10%',
-    paddingRight: '10%',
+    flexDirection: "column",
+    paddingLeft: "10%",
+    paddingRight: "10%"
   },
 
   textInputTop: {
@@ -375,9 +394,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 5,
     borderRadius: 5,
-    width: '100%',
-    backgroundColor: '#F5F5F5',
-    paddingLeft: '5%'
+    width: "100%",
+    backgroundColor: "#F5F5F5",
+    paddingLeft: "5%"
   },
 
   textInput: {
@@ -385,71 +404,71 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 5,
     borderRadius: 5,
-    width: '100%',
-    backgroundColor: '#F5F5F5',
-    paddingLeft: '5%'
+    width: "100%",
+    backgroundColor: "#F5F5F5",
+    paddingLeft: "5%"
   },
 
   switchteachers: {
-    flexDirection: 'row',
+    flexDirection: "row",
     height: 45,
     marginTop: 5,
     marginBottom: 5,
     marginLeft: 5,
-    width: '100%',
-    justifyContent: 'space-between',
-    textAlign: 'center'
+    width: "100%",
+    justifyContent: "space-between",
+    textAlign: "center"
   },
 
   underswitchteacher: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    textAlign: 'center'
+    flexDirection: "column",
+    justifyContent: "center",
+    textAlign: "center"
   },
 
   tabs: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    bottom: 5,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    bottom: 5
   },
 
   tabTextStyle1: {
     color: Colors.Black,
-    flexDirection: 'row',
+    flexDirection: "row",
     fontSize: 20,
-    marginRight: '10%',
+    marginRight: "10%"
   },
 
   tabTextStyle2: {
     color: Colors.Black,
-    flexDirection: 'row',
+    flexDirection: "row",
     fontSize: 20,
-    marginLeft: '10%'
+    marginLeft: "10%"
   },
 
   tbar: {
-    width: '100%',
-    height: '25%',
+    width: "100%",
+    height: "25%"
   },
 
   bbar: {
-    width: '100%',
-    height: '12%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    textAlign: 'center',
+    width: "100%",
+    height: "12%",
+    flexDirection: "row",
+    justifyContent: "center",
+    textAlign: "center"
   },
 
   dotConnexion: {
-    position: 'absolute',
-    left: '20%',
+    position: "absolute",
+    left: "20%"
   },
 
   dotInscription: {
-    position: 'absolute',
-    left: '80%',
-  },
+    position: "absolute",
+    left: "80%"
+  }
 });
 
 export default Sign;

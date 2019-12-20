@@ -10,6 +10,8 @@ import Louvre1 from "./components/louvre1.enigma";
 import Louvre2 from "./components/louvre2.enigma";
 import Louvre3 from "./components/louvre3.enigma";
 
+import EnigmaEnd from "./components/enigma_end";
+
 import Compte from "./components/Compte";
 import Mapps from "./components/Mapps";
 import Sign from "./components/Sign";
@@ -95,7 +97,13 @@ const MainNavigator = createStackNavigator({
     navigationOptions: () => ({
       header: null
     })
-  }
+  },
+   EnigmaEnd: {
+    screen: EnigmaEnd,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
 });
 
 const Navigation = createAppContainer(MainNavigator);

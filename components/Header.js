@@ -21,7 +21,9 @@ class Header extends Component {
           width: "100%",
           height: 80,
           backgroundColor: "white",
-          borderRadius: 2
+          borderRadius: 2,
+          marginTop: -20,
+          marginLeft: -6
         }}
       >
         <Image

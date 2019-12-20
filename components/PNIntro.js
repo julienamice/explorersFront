@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Button } from "react-native-elements";
 import { View, Text } from "react-native";
 import { withNavigation } from "react-navigation";
+import Mapps from "./Mapps";
+import MappsPN from "./MappsPN";
 
 class PNIntro extends Component {
   state = {
@@ -25,7 +27,7 @@ class PNIntro extends Component {
           width: "98%",
           height: "94.5%",
           position: "absolute",
-          marginTop: "9%",
+          marginTop: "3%",
           marginLeft: "1%",
           borderWidth: 2,
           borderTopColor: "#D7D7D6",
@@ -45,21 +47,24 @@ class PNIntro extends Component {
         <View
           style={{
             width: "90%",
-            height: "90%",
+            height: "60%",
             marginLeft: 20,
             marginRight: 15,
+            marginTop: 100,
+            marginBottom: 350,
             justifyContent: "center",
             alignSelf: "center"
           }}
         >
           <Text style={{ fontSize: 22, fontWeight: "700" }}>
-            But de l'énigme du Pont-Neuf :
+            Votre seconde mission
           </Text>
           <Text> </Text>
           <Text style={{ fontSize: 15, fontWeight: "400" }}>
             Tu vas découvrir à quelle date le plus vieux pont de Paris fut
             classé aux monuments historiques !
           </Text>
+          <MappsPN />
           <Button
             title="GO"
             titleStyle={{
@@ -69,7 +74,7 @@ class PNIntro extends Component {
             buttonStyle={{
               backgroundColor: "#C1EA69",
               marginLeft: "8%",
-              marginBottom: "1.5%",
+              marginBottom: -80,
               width: "80%",
               height: 40,
               marginTop: 50

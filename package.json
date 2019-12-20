@@ -22,6 +22,7 @@
     "react-native-navigation": "^4.0.4",
     "react-native-overlay": "^0.5.0",
     "react-native-screens": "~1.0.0-alpha.23",
+    "react-native-star-rating": "^1.1.0",
     "react-native-switch-toggle": "^1.1.4",
     "react-native-web": "^0.11.7",
     "react-navigation": "^4.0.10",

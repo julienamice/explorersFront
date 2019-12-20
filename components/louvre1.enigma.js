@@ -28,7 +28,7 @@ function Louvre1(props) {
             </View>
             <View top={60} style={{ width: '86%', position: 'absolute' }}>
                 <Text h1 style={styles.h1}>Votre première mission</Text>
-                <Text style={styles.text}>Les travaux du palais traîne... rendez-vous au Louvre pour jeter un oeil à cette histoire et faire avancer les travaux</Text>
+                <Text style={styles.text}>Les travaux du palais traînent... rendez-vous au Louvre pour jeter un oeil à cette histoire et faire avancer les travaux</Text>
 
             </View>
             <TouchableOpacity style={styles.buttonOK} onPress={() => { navigate("Louvre2", { enigmaContent: navigation.enigmaContent }) }}>

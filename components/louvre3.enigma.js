@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, PanResponder, Animated, Dimensions, UIManager, findNodeHandle, StatusBar } from 'react-native';
 
+
+
 var windowDim = Dimensions.get('window');
 
 var viewWidth = windowDim.width * 86 / 100;
@@ -49,22 +51,22 @@ class Louvre3 extends Component {
 
         var countCheck = 0
 
-        if (item1Correction.x * 0.50 <= this.state.item1.x && this.state.item1.x <= item1Correction.x * 1.50 && item1Correction.y * 0.50 <= this.state.item1.y && this.state.item1.y <= item1Correction.y * 1.50) {
+        if (item1Correction.x * 0.20 <= this.state.item1.x && this.state.item1.x <= item1Correction.x * 1.80 && item1Correction.y * 0.20 <= this.state.item1.y && this.state.item1.y <= item1Correction.y * 1.80) {
             console.log('Item 1 bien placé')
             countCheck++
         } else { console.log('Item 1 PAS BIEN PLACE DU TOUT') }
 
-        if (item2Correction.x * 0.50 <= this.state.item2.x && this.state.item2.x <= item2Correction.x * 1.50 && item2Correction.y * 0.50 <= this.state.item2.y && this.state.item2.y <= item2Correction.y * 1.50) {
+        if (item2Correction.x * 0.20 <= this.state.item2.x && this.state.item2.x <= item2Correction.x * 1.80 && item2Correction.y * 0.20 <= this.state.item2.y && this.state.item2.y <= item2Correction.y * 1.80) {
             console.log('Item 2 bien placé')
             countCheck++
         } else { console.log('Item 2 PAS BIEN PLACE DU TOUT') }
 
-        if (item3Correction.x * 0.50 <= this.state.item3.x && this.state.item3.x <= item3Correction.x * 1.50 && item3Correction.y * 0.50 <= this.state.item3.y && this.state.item3.y <= item3Correction.y * 1.50) {
+        if (item3Correction.x * 0.20 <= this.state.item3.x && this.state.item3.x <= item3Correction.x * 1.80 && item3Correction.y * 0.20 <= this.state.item3.y && this.state.item3.y <= item3Correction.y * 1.80) {
             console.log('Item 3 bien placé')
             countCheck++
         } else { console.log('Item 3 PAS BIEN PLACE DU TOUT') }
 
-        if (item4Correction.x * 0.50 <= this.state.item4.x && this.state.item4.x <= item4Correction.x * 1.50 && item4Correction.y * 0.50 <= this.state.item4.y && this.state.item4.y <= item4Correction.y * 1.50) {
+        if (item4Correction.x * 0.20 <= this.state.item4.x && this.state.item4.x <= item4Correction.x * 1.80 && item4Correction.y * 0.20 <= this.state.item4.y && this.state.item4.y <= item4Correction.y * 1.80) {
             console.log('Item 4 bien placé')
             countCheck++
         } else { console.log('Item 4 PAS BIEN PLACE DU TOUT') }
@@ -74,7 +76,7 @@ class Louvre3 extends Component {
         if (countCheck === 4) {
             navigate("EnigmaEnd", {})
         }
-        // 
+        
     }
 
 
@@ -270,7 +272,7 @@ class Louvre3 extends Component {
 
 
                 <View style={{ flex: 1, width: '86%' }}>
-                    <TouchableOpacity style={styles.buttonOK} onPress={() => this.checkScore()}>
+                    <TouchableOpacity style={styles.buttonOK} onPress={() => this.checkScore() }>
                         <Text style={styles.textCTA}>Vérifier les emplacements</Text>
                     </TouchableOpacity>
                 </View>
