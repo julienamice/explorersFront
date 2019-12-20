@@ -9,7 +9,7 @@ import MapView, { Marker } from 'react-native-maps';
 
 function IntroTrail(props) {
     const [currentPos, setCurrentPos] = useState({ long: 0, lat: 0, latitudeDelta: 0.5, longitudeDelta: 0.5 })
-    const [enigmaPos, setEnigma] = useState({ long: 2.2727728, lat: 48.8250032 })
+    const [enigmaPos, setEnigma] = useState({ long: 2.34979, lat: 48.8634 })
     const [distToEnigma, setDistToEngima] = useState(null)
     const [nextStep, setNextStep] = useState({ isNext: false, msg: 'Rapprochez vous du départ !' })
 

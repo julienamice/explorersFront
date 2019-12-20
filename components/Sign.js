@@ -206,6 +206,7 @@ class Sign extends React.Component {
                   />
                   <TextInput
                     style={styles.textInput}
+                    secureTextEntry={true}
                     underlineColorAndroid="transparent"
                     placeholder="Mot de passe"
                     placeholderTextColor="black"
@@ -242,6 +243,7 @@ class Sign extends React.Component {
                   />
                   <TextInput
                     style={styles.textInput}
+                    secureTextEntry={true}
                     underlineColorAndroid="transparent"
                     placeholder="Mot de passe"
                     placeholderTextColor="black"

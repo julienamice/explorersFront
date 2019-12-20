@@ -7,6 +7,7 @@ import Mapps from "./Mapps";
 import { ip } from "../config";
 import MyImage from "./Image";
 import PNIntro from "./PNIntro";
+import IntroTrail from "./intro.enigma";
 
 class TrailDetails extends Component {
   state = {
@@ -19,7 +20,7 @@ class TrailDetails extends Component {
   };
 
   go = () => {
-    this.props.navigation.navigate("PNIntro");
+    this.props.navigation.navigate("IntroTrail");
   };
 
   componentDidMount() {
