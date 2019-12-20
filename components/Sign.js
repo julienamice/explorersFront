@@ -12,7 +12,8 @@ import {
   Switch,
   Image,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity, 
+  StatusBar
 } from 'react-native';
 import {
   Ionicons,
@@ -139,7 +140,7 @@ class Sign extends React.Component {
     return (
 
       <ImageBackground source={require('../assets/background_login.png')} style={{ width: '100%', height: '100%' }}>
-
+         <StatusBar  hidden={true} />
         <View
           style={styles.globalView}
         >
