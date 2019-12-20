@@ -39,8 +39,8 @@ class TrailCard extends Component {
             borderWidth: 1,
             borderColor: "#DDDDDD",
             borderRadius: 8,
-            marginBottom: 15,
-            marginRight: 5,
+            marginBottom: 20,
+            marginRight: 15,
             backgroundColor: "white",
             shadowColor: "#000",
             shadowOffset: {
@@ -62,13 +62,13 @@ class TrailCard extends Component {
               marginBottom: -5,
               width: "100%"
             }}
-            // resizeMode="contain"
+          // resizeMode="contain"
           />
           <Text
             style={{
-              marginRight: 10,
-              marginLeft: 10,
-              marginTop: 10,
+              marginRight: 15,
+              marginLeft: 15,
+              marginTop: 15,
               fontSize: 14
             }}
           >
@@ -84,8 +84,8 @@ class TrailCard extends Component {
 
           <Text
             style={{
-              marginRight: 10,
-              marginLeft: 10,
+              marginRight: 15,
+              marginLeft: 15,
               fontSize: 20,
               fontWeight: "bold"
             }}
@@ -98,8 +98,8 @@ class TrailCard extends Component {
               flexDirection: "row",
               justifyContent: "space-between",
               marginBottom: 15,
-              marginRight: 10,
-              marginLeft: 10,
+              marginRight: 15,
+              marginLeft: 15,
               fontSize: 16
             }}
           >

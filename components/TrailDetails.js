@@ -70,7 +70,7 @@ class TrailDetails extends Component {
             borderTopWidth: 0
           }}
           showsVerticalScrollIndicator={false}
-          // contentContainerStyle={StyleSheet.absoluteFillObject}
+        // contentContainerStyle={StyleSheet.absoluteFillObject}
         >
           <Button
             icon={<Icon name="arrow-back" color="black" />}

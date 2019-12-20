@@ -46,7 +46,7 @@ class ThemeList extends Component {
       <View>
         <StatusBar hidden={true} />
         <ImageBackground
-          source={require("../assets/BKG.png")}
+          source={require("../assets/bkg_white.png")}
           style={{ width: "100%", height: "100%", zIndex: -12 }}
         >
           {/* gestion de l'ensemble des éléments de la 'page' */}
@@ -84,7 +84,6 @@ class ThemeList extends Component {
                 <Text
                   style={{
                     color: "black",
-                    fontStyle: "italic",
                     fontWeight: "bold",
                     fontSize: 25
                   }}
@@ -108,14 +107,14 @@ class ThemeList extends Component {
                     backgroundColor: "rgba(217, 198, 186, 0.6)"
                   }}
                 >
-                  <Text style={{ marginTop: 20, marginLeft: 10, fontSize: 14 }}>
-                    15 Questions
+                  <Text style={{ marginTop: 20, marginLeft: 10, fontSize: 13 }}>
+                    15 questions
                   </Text>
                   <Text
                     h4
-                    style={{ marginRight: 20, marginLeft: 10, fontSize: 17 }}
+                    style={{ marginRight: 20, marginLeft: 10, fontSize: 13 }}
                   >
-                    Révolution Industrielle
+                    Révolution industrielle
                   </Text>
                   <Button
                     // icon={<Icon name="arrow-forward" color="black" />}
@@ -147,7 +146,7 @@ class ThemeList extends Component {
                 >
                   Tous les parcours
                   <Text> </Text>
-                  <Feather name="sliders" size={20} />
+                  {/* <Feather name="sliders" size={20} /> */}
                   {/* <Image
                   source={require("../assets/parameter.png")}
                   style={{ width: 25, height: 25 }}
