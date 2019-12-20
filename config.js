@@ -1,3 +1,3 @@
-var ipAdress = '192.168.1.80:3001/'
+var ipAdress = '10.2.4.20:3001/'
 
 module.exports = ipAdress

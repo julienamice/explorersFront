@@ -68,9 +68,26 @@ function Louvre2(props) {
     <View style={styles.container}>
     <StatusBar  hidden={true} />
       <View top={60} style={{ width: "86%", flex: 3 }}>
+        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 24}}>
         <Text h1 style={styles.h1}>
           Retrouvez les bons plans de construction !
         </Text>
+        <TouchableOpacity
+                    onPress={() => { console.log('Donne un indice stp') }}
+                    style={
+                        {
+                            alignSelf: "center",
+                            alignItems: 'center',
+                            backgroundColor: '#C1EA69',
+                            width: 60,
+                            height: 40,
+                            borderRadius: 4,
+                            borderColor: 'transparent',
+                        }}
+                >
+                    <Text style={{ lineHeight: 40 }}>Indice</Text>
+        </TouchableOpacity>
+        </View>
         <Text style={styles.text}>Le palais du Louvre s'est construit au travers des siècles. Vous devez trouver les extensions qui correspondent à la Renaissance, observez les bâtiments pour trouver le symbole très présent qui vous aidera à bien choisir. </Text>
       </View>
 
@@ -337,8 +354,11 @@ const styles = StyleSheet.create({
   h1: {
     fontWeight: "bold",
     fontSize: 24,
-    marginBottom: 24
+
+    width: '85%',
+    alignSelf: "center"
   },
+
   text: {
     fontSize: 16
   },

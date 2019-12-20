@@ -21,7 +21,6 @@ import {
 import { withNavigation } from "react-navigation";
 var ipAdress = require('../config');
 
-console.log(ipAdress)
 class Sign extends React.Component {
 
   constructor() {

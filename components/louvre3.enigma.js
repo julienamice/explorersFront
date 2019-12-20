@@ -49,22 +49,22 @@ class Louvre3 extends Component {
 
         var countCheck = 0
 
-        if (item1Correction.x * 0.80 <= this.state.item1.x && this.state.item1.x <= item1Correction.x * 1.20 && item1Correction.y * 0.80 <= this.state.item1.y && this.state.item1.y <= item1Correction.y * 1.20) {
+        if (item1Correction.x * 0.50 <= this.state.item1.x && this.state.item1.x <= item1Correction.x * 1.50 && item1Correction.y * 0.50 <= this.state.item1.y && this.state.item1.y <= item1Correction.y * 1.50) {
             console.log('Item 1 bien placé')
             countCheck++
         } else { console.log('Item 1 PAS BIEN PLACE DU TOUT') }
 
-        if (item2Correction.x * 0.80 <= this.state.item2.x && this.state.item2.x <= item2Correction.x * 1.20 && item2Correction.y * 0.80 <= this.state.item2.y && this.state.item2.y <= item2Correction.y * 1.20) {
+        if (item2Correction.x * 0.50 <= this.state.item2.x && this.state.item2.x <= item2Correction.x * 1.50 && item2Correction.y * 0.50 <= this.state.item2.y && this.state.item2.y <= item2Correction.y * 1.50) {
             console.log('Item 2 bien placé')
             countCheck++
         } else { console.log('Item 2 PAS BIEN PLACE DU TOUT') }
 
-        if (item3Correction.x * 0.80 <= this.state.item3.x && this.state.item3.x <= item3Correction.x * 1.20 && item3Correction.y * 0.80 <= this.state.item3.y && this.state.item3.y <= item3Correction.y * 1.20) {
+        if (item3Correction.x * 0.50 <= this.state.item3.x && this.state.item3.x <= item3Correction.x * 1.50 && item3Correction.y * 0.50 <= this.state.item3.y && this.state.item3.y <= item3Correction.y * 1.50) {
             console.log('Item 3 bien placé')
             countCheck++
         } else { console.log('Item 3 PAS BIEN PLACE DU TOUT') }
 
-        if (item4Correction.x * 0.80 <= this.state.item4.x && this.state.item4.x <= item4Correction.x * 1.20 && item4Correction.y * 0.80 <= this.state.item4.y && this.state.item4.y <= item4Correction.y * 1.20) {
+        if (item4Correction.x * 0.50 <= this.state.item4.x && this.state.item4.x <= item4Correction.x * 1.50 && item4Correction.y * 0.50 <= this.state.item4.y && this.state.item4.y <= item4Correction.y * 1.50) {
             console.log('Item 4 bien placé')
             countCheck++
         } else { console.log('Item 4 PAS BIEN PLACE DU TOUT') }
@@ -207,7 +207,24 @@ class Louvre3 extends Component {
             <View style={styles.container}>
                 <StatusBar  hidden={true} />
                 <View top={60} style={{ width: '86%', flex: 3 }}>
-                    <Text h1 style={styles.h1}>Bravo ! Vous avez tout trouvé !</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 24}}>
+                        <Text h1 style={styles.h1}>Vous avez tout trouvé ! Encore un petit effort..</Text>
+                        <TouchableOpacity
+                        onPress={() => { console.log('Donne un indice stp') }}
+                        style={
+                            {
+                                alignSelf: "center",
+                                alignItems: 'center',
+                                backgroundColor: '#C1EA69',
+                                width: 60,
+                                height: 40,
+                                borderRadius: 4,
+                                borderColor: 'transparent',
+                            }}
+                        >
+                        <Text style={{ lineHeight: 40 }}>Indice</Text>
+                        </TouchableOpacity>
+                     </View>
                     <Text style={styles.text}>Maintenant, le roi vous demande de refaire les plans en repositionnant les extensions de Renaissance.. Soyez observateurs, les détails vous aideront ! </Text>
                 </View>
 
@@ -298,9 +315,10 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     h1: {
-        fontWeight: 'bold',
-        fontSize: 24,
-        marginBottom: 24
+        fontWeight: "bold",
+    fontSize: 24,
+    width: '85%',
+    alignSelf: "center"
     },
     text: {
         fontSize: 16

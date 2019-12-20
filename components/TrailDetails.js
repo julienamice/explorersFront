@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { View, Image, ScrollView, TouchableOpacity, StatusBar} from "react-native";
+import { View, Image, ScrollView, TouchableOpacity, StatusBar } from "react-native";
 import { Button, Text, Icon } from "react-native-elements";
 import { Foundation } from "@expo/vector-icons";
 import Mapps from "./Mapps";
@@ -12,7 +12,7 @@ import IntroTrail from './intro.enigma'
 class TrailDetails extends Component {
   state = {
     trailDetails: {},
-    displayTeacher: false
+    displayTeacher: true
   };
 
   onPress = () => {
@@ -35,7 +35,7 @@ class TrailDetails extends Component {
     // console.log(navigation.state.params.id);
     return (
       <View>
-         <StatusBar  hidden={true} />
+        <StatusBar hidden={true} />
         {/*  gestion de l'affichage global */}
         <ScrollView
           style={{
@@ -90,7 +90,7 @@ class TrailDetails extends Component {
               marginBottom: 10
             }}
           >
-            <Button
+            {/* <Button
               title="Teacher"
               titleStyle={{
                 color: "black",
@@ -105,11 +105,11 @@ class TrailDetails extends Component {
               onPress={() => {
                 this.onPress();
               }}
-            />
+            /> */}
             {/* gestion de l'affichage des données récupérées de trailList */}
             <View
               style={{
-                width: "100%",
+                width: "86%",
                 flexDirection: "row",
                 justifyContent: "space-between",
                 marginTop: 10

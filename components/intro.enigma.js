@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity, Image, StatusBar} from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, Image, StatusBar } from 'react-native';
 
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
@@ -9,7 +9,7 @@ import MapView, { Marker } from 'react-native-maps';
 
 function IntroTrail(props) {
     const [currentPos, setCurrentPos] = useState({ long: 0, lat: 0, latitudeDelta: 0.5, longitudeDelta: 0.5 })
-    const [enigmaPos, setEnigma] = useState({ long: 2.2727728, lat: 48.8250032 })
+    const [enigmaPos, setEnigma] = useState({ long: 2.3502269034290135, lat: 48.86483976349885 })
     const [distToEnigma, setDistToEngima] = useState(null)
     const [nextStep, setNextStep] = useState({ isNext: false, msg: 'Rapprochez vous du départ !' })
 
@@ -97,7 +97,7 @@ function IntroTrail(props) {
 
     return (
         <View style={styles.container}>
-             <StatusBar  hidden={true} />
+            <StatusBar hidden={true} />
             <View style={{ position: "absolute", top: 16, width: '100%', left: '7%', alignItems: 'stretch' }}>
                 <TouchableOpacity onPress={() => { navigate("TrailDetails") }}>
                     <Image
